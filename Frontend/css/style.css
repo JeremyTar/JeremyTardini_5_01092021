@@ -1,0 +1,135 @@
+/* Elements css general */
+@keyframes apparitionSign {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes removeSign {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+* {
+  text-decoration: none;
+}
+
+header {
+  border: 2px #AE759F solid;
+  background-color: #f3e9f1;
+  border-radius: 5px;
+  min-width: 300px;
+}
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0;
+}
+header nav ul li {
+  list-style: none;
+  margin: 5px;
+}
+header nav ul li a {
+  color: #55286F;
+  font-weight: 500;
+}
+
+.article {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 0;
+  margin: 10px 0px;
+}
+.article .card {
+  background-color: #f3e9f1;
+  min-width: 300px;
+  max-width: 500px;
+  padding: 15px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 2px #AE759F solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.article .card img {
+  image-rendering: inherit;
+  object-fit: contain;
+  width: 100%;
+  height: 150px;
+  border-radius: 5px;
+  margin: 5px;
+}
+.article .card__title {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+.article .card__title p {
+  margin: 0;
+  font-weight: 500;
+  color: #55286F;
+}
+.article .card__title__adds {
+  display: flex;
+  color: #55286F;
+}
+.article .card__buy {
+  display: flex;
+  justify-content: flex-end;
+  height: 30px;
+}
+.article .card__buy input {
+  width: 50px;
+  margin: 0px 5px;
+}
+.article .card__buy button {
+  width: 150px;
+  border-radius: 5px;
+  border-color: #AE759F;
+}
+
+aside .card {
+  height: 200px;
+}
+
+footer {
+  background-color: #f3e9f1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #AE759F;
+  border-radius: 5px;
+}
+footer ul {
+  padding: 5px;
+  display: flex;
+  justify-content: space-evenly;
+}
+footer ul li {
+  list-style: none;
+}
+footer ul li a {
+  color: #55286F;
+}
+footer .row {
+  margin: auto;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,119 @@
+/* Elements css general */
+@import "../sass/utils.scss";
+
+* {
+    text-decoration: none;
+}
+
+header{
+    border: 2px $secondary--color solid;
+    background-color: $primary--color;
+    border-radius: 5px;
+    min-width: 300px;
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        ul {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 0;
+            li {
+                list-style: none;
+                margin: 5px;
+                a{
+                    color: $tertiary--color;
+                    font-weight: 500;
+                }
+
+            }
+        }
+
+    }
+}
+
+.article{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 0;
+    margin: 10px 0px;
+    .card{
+        background-color: $primary--color;
+        min-width: 300px;
+        max-width: 500px;
+        padding: 15px;
+        margin: 5px;
+        border-radius: 5px;
+        border: 2px $secondary--color solid;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        img {
+            image-rendering: inherit;
+            object-fit: contain;
+            width: 100%;
+            height: 150px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        &__title{
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+            p{
+                margin: 0;
+                font-weight: 500;
+                color: $tertiary--color;
+            }
+            &__adds {
+                display: flex;
+                color: $tertiary--color;
+            }
+        }
+        &__buy {
+            display: flex;
+            justify-content: flex-end;
+            height: 30px;
+            input{
+                width: 50px;
+                margin: 0px 5px;
+            }
+            button{
+                width: 150px;
+                border-radius: 5px;
+                border-color: $secondary--color;
+            }
+        }
+    }
+}
+
+aside {
+    .card {
+        height: 200px;
+    }
+}
+
+footer{
+    background-color: $primary--color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $secondary--color;
+    border-radius: 5px;
+    ul{
+        padding: 5px;
+        display: flex;
+        justify-content: space-evenly;
+        li{
+            list-style: none;
+            a{
+                color: $tertiary--color;
+            }
+        }
+    }
+    .row{
+        margin: auto;
+    }
+}
