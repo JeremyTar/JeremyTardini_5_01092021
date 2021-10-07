@@ -16,7 +16,23 @@
     z-index: 2;
     background-color: rgba(243, 233, 231, 0.5)
 }
+input{
+    
+    /* Firefox */
+    -moz-appearance: textfield;
 
+    /* Chrome */
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin:0;
+    }
+
+    /* Opéra*/
+    &::-o-inner-spin-button {
+        -o-appearance: none;
+        margin: 0; 
+    }
+}
 
 header{
     border: 2px $secondary--color solid;

@@ -1,4 +1,5 @@
 let realPanier = [];
+let listOdonymie = ["Allée", "Anse", "Avenue", "Boulevard", "Carrefour", "Chaussée", "Chemin", "Cité", "Clos", "Côte", "Cours", "Degré", "Esplanade", "Gaffe", "Impasse", "Liason", "Mail", "Montée", "Passage", "Place" , "Placette", "Pont", "Promenade", "Quai", "Résidence", "Rang", "Rampe", "Rond-Point", "Route", "Rue", "Ruelle", "Sentier", "Square", "Traboule", "Traverse", "Venelle", "Villa", "Voie"];
 
 (async function () {
     const produit = await apiCall(apiUrl , {});
@@ -16,7 +17,6 @@ async function converstionLocalStorage(produit) {
         }
     }
 }
-
 //FONCTION D'AFFICHAGE DU PANIER DYNAMIQUE
 
 async function afficherCart (realPanier) {
@@ -66,11 +66,11 @@ async function afficherCart (realPanier) {
                                 </div>
                                 <div class="cart_item_price cart_info_col">
                                     <div class="cart_item_title">Price</div>
-                                    <div class="cart_item_text">${price}</div>
+                                    <div class="cart_item_text">${price} €</div>
                                 </div>
                                 <div class="cart_item_total cart_info_col">
                                     <div class="cart_item_title">Total</div>
-                                    <div class="cart_item_text">${getTotalByProduct(quantity,price)}</div>
+                                    <div class="cart_item_text">${getTotalByProduct(quantity,price)} €</div>
                                 </div>
                             </div>
                         </li>`;
@@ -89,12 +89,12 @@ async function afficherCart (realPanier) {
                                             <div class="order_total">
                                                 <div class="order_total_content text-md-right">
                                                     <div class="order_total_title">Order Total:</div>
-                                                    <div class="order_total_amount">${totalAmount}€</div>
+                                                    <div class="order_total_amount">${totalAmount} €</div>
                                                 </div>
                                             </div>
                                             <div class="cart_buttons">
                                                 <a href="../Html/Index.html"><button type="button" class="button cart_button_clear">Continue Shopping</button></a>
-                                                <button type="button" class="button cart_button_checkout onclick="afficherForm()">Purchase</button>
+                                                <a href="#purchase"><button type="button" class="button cart_button_checkout" onclick="afficherForm()">Purchase</button></a>
                                             </div>
                                         </div>
                                     </div>
@@ -102,52 +102,113 @@ async function afficherCart (realPanier) {
                             </div>
                         </div>`;
         document.getElementById("panier").innerHTML = htmlCart;
-        document.getElementById("cart_list").insertAdjacentHTML('afterbegin', htmlList);
+        for( i = 0 ; i < htmlList.length; i++) {
+            document.getElementById("cart_list").insertAdjacentHTML('beforeend', htmlList[i]);
+        }
+    }
+}
+
+async function afficherForm() {
+    if(document.getElementById("paiment")) {
+
+    }
+    else {
+        let blurDiv = '<div id="blur"></div>';
+        let htmlForm = `<form id="form">
+                            <div class="d-flex justify-content-around">
+                                <div class="col-5 p-2">
+                                    <div class="form-group">
+                                        <label for="Contact">Contact</label>
+                                        <input type="email" class="form-control" placeholder="Email">
+                                        
+                                        <input type="number" class="form-control" placeholder="Telephone">
+                                        <small class="form-text text-muted">We'll never share your contact's informations with anyone else.</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Destinataire</label>
+                                        <input type="text" class="form-control" placeholder="Nom">
+                                        <input type="text" class="form-control" placeholder="Prenom">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="location">Adresse</label>
+                                        <div class="d-flex">
+                                            <input type="number" class="form-control" placeholder="n°">
+                                            <select id="selectForm" name="streetType">
+                                            </select>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Adresse">
+                                    </div>
+                                </div>
+                                <div class="col-5 p-2">
+                                    <div class="payment-info" id="paiment">
+                                            <div class="d-flex justify-content-between align-items-center"><span>Coordonnées Bancaires</span></div><span class="type d-block mt-3 mb-1">Card type</span>
+                                            <label class="radio"> <input type="radio" name="card" value="payment" checked> <span><img width="30" src="https://img.icons8.com/color/48/000000/mastercard.png" /></span> </label>
+                                            <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/visa.png" /></span> </label>
+                                            <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/ultraviolet/48/000000/amex.png" /></span> </label>
+                                            <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/paypal.png" /></span> </label>               
+                                    </div>    
+                                    <div>
+                                        <label class="credit-card-label">Nom sur la carte</label>
+                                        <input type="text" class="form-control credit-inputs" placeholder="Name">
+                                    </div>
+                                    <div>
+                                        <label class="credit-card-label">Numéros de carte</label>
+                                        <input type="text" class="form-control credit-inputs" placeholder="0000 0000 0000 0000">
+                                    </div>  
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="credit-card-label">Date</label>
+                                            <input type="text" class="form-control credit-inputs" placeholder="12/24">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="credit-card-label">CVV</label>
+                                            <input type="text" class="form-control credit-inputs" placeholder="342">
+                                        </div>
+                                    </div>
+                                        <hr class="line">
+                                        <div class="d-flex justify-content-between information"><span>Subtotal</span><span>$3000.00</span></div>
+                                        <div class="d-flex justify-content-between information"><span>Shipping</span><span>$20.00</span></div>
+                                        <div class="d-flex justify-content-between information"><span>Total(Incl. taxes)</span><span>$3020.00</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between p-3">
+                                <button onclick="removeSign">Continuer mes achats</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>`;
+        document.getElementById("purchase").insertAdjacentHTML('afterbegin', htmlForm);
+        let optionOdonymie = ''
+        for(let i = 0; i < listOdonymie.length; i++) {
+            optionOdonymie = optionOdonymie + `<option value="${listOdonymie[i]}">${listOdonymie[i]}</option>`;
+            
+    }
+    document.getElementById("selectForm").innerHTML = optionOdonymie;
     }
 }
 
 
-
-async function afficherForm() {
-    let htmlForm = `<form id="form">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>`;
-    let blurDiv = '<div id="blur"></div>';
-    document.getElementById("main").insertAdjacentHTML('afterbegin', htmlForm);
-    document.getElementById("body").insertAdjacentHTML('afterbegin', blurDiv);
-    
-}
-
-
-async function RemoveCart(idProduct) {
-    localStorage.removeItem(idProduct)
-}
-
-
-function inputOnChange(v, idProduct) {
+async function inputOnChange(v, idProduct) {
+    for(let i = 0 ; i < realPanier.length; i++) {
+        if(realPanier[i].quantity > realPanier[i].stock) {
+            alert("Nous n'avons pas assez de stock. Contactez le siege au 00.00.00.00.00");
+            realPanier[i].quantity = 1;
+            document.getElementById(idProduct).value = 1;
+            let modifPanier = JSON.stringify(realPanier[i]);
+            localStorage.setItem(idProduct, modifPanier);
+        }
+    }
     if(v.value <= 0) {
-        RemoveCart(idProduct)
-        location.reload()
+        localStorage.removeItem(idProduct);
+        location.reload();
     }
     for(let i = 0; i < localStorage.length; i++) {
         if(localStorage.key(i) == idProduct) {
-            realPanier[i].quantity = v.value
-            let modifPanier = JSON.stringify(realPanier[i])
-            localStorage.setItem(idProduct, modifPanier)
+            realPanier[i].quantity = v.value;
+            let modifPanier = JSON.stringify(realPanier[i]);
+            localStorage.setItem(idProduct, modifPanier);
         }  
     }
-    afficherCart(realPanier)
+    afficherCart(realPanier);
 }

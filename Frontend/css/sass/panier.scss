@@ -1,5 +1,24 @@
 @import '../sass/utils.scss';
 
+input{
+    text-align: center;
+    width: 50px;
+    /* Firefox */
+    -moz-appearance: textfield;
+
+    /* Chrome */
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin:0;
+    }
+
+    /* Opéra*/
+    &::-o-inner-spin-button {
+        -o-appearance: none;
+        margin: 0; 
+    }
+}
+
 #blur{
     content: '';
     display: block;
@@ -73,6 +92,11 @@ header{
 
 #form{
     background-color: $primary--color;
+    z-index: 3;
+    left: 50vw;
+    border: solid 2px $tertiary--color;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 #blur{

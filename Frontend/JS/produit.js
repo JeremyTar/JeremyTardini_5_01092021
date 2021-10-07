@@ -28,7 +28,7 @@ let newUrlId = apiUrl + '/' + apiUrlId;
                             </select>
                         <div class="inputButton">
                             <p> Il reste ${produit.stock} articles disponibles </p>
-                            <input type="number" value="1" min="1" max="${produit.stock}" onchange="controleStock(this, ${produit.stock})" >
+                            <input id="${produit._id}" type="number" value="1" min="1" max="${produit.stock}" onchange="controleStock(this, ${produit.stock})" >
                             <button onclick="addToCart()">Ajouter au panier</button>
                         </div>
                     </div>`;
@@ -40,14 +40,6 @@ let newUrlId = apiUrl + '/' + apiUrlId;
             htmlLense = htmlLense + `<option value="${lenses[i]}">${lenses[i]}</option>` // ajout des différentes personalisation au DOM
         }
         document.getElementById("lense").innerHTML = htmlLense;
-    }
-
-    function controleStock(v, maxStock) {
-        if(v.value <= 0 || v.value > maxStock) {
-            window.alert('Mauvaises données')
-            v.value = 1
-            storage.removeItem 
-        }
     }
 
 // FONCTION POUR AJOUTER AU LOCAL STORAGE
@@ -70,8 +62,7 @@ async function addToCart() {
     let blurDiv = '<div id="blur"></div>';
     document.getElementById("body").insertAdjacentHTML('afterbegin', blurDiv);
     
-    
-// FUNCTION APPARITION CONFIRAMTION DE PANIER
+    // FUNCTION APPARITION CONFIRAMTION DE PANIER
 
     async function appearSign(elem) {
         if(elem === true) {            
@@ -103,9 +94,18 @@ async function addToCart() {
 // FUNCTION POUR RETOUR SIGN
 
 async function removeSign () {
+    let elemForm = document.getElementById("Form");
+    elemForm.parentNode.removeChild(elemSign);
     let elemSign = document.getElementById("confirmeSign");
     elemSign.parentNode.removeChild(elemSign);
     let elemBlur = document.getElementById("blur");
     elemBlur.parentNode.removeChild(elemBlur);
 
 }
+
+async function controleStock(v, maxStock) {
+    if(v.value <= 0 || v.value > maxStock) {
+        window.alert('Données saisies incorrectes')
+        v.value = 1
+    }
+  }

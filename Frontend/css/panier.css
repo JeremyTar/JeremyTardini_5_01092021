@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @keyframes apparitionSign {
   0% {
     opacity: 0;
@@ -18,16 +19,66 @@
     transform: translateY(100%);
   }
 }
+input {
+  text-align: center;
+  width: 50px;
+  /* Firefox */
+  -moz-appearance: textfield;
+  /* Chrome */
+  /* Opéra*/
+}
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input::-o-inner-spin-button {
+  -o-appearance: none;
+  margin: 0;
+}
+
 #blur {
   content: "";
   display: block;
   position: fixed;
   width: 100vw;
   height: 100vh;
-  filter: blur(3px);
   opacity: 1;
   z-index: 2;
   background-color: rgba(243, 233, 231, 0.5);
+}
+
+#confirmeSign {
+  animation: apparitionSign 1s ease forwards;
+  opacity: 1;
+  position: fixed;
+  top: 50vh;
+  left: 30vw;
+  border: solid 2px #AE759F;
+  border-radius: 5px;
+  z-index: 3;
+  background-color: #f3e9f1;
+  padding: 5px;
+  margin: auto;
+}
+#confirmeSign div {
+  display: flex;
+  justify-content: space-between;
+}
+#confirmeSign div #productReturn {
+  cursor: pointer;
+  border: none;
+  background-color: #f3e9f1;
+}
+#confirmeSign div #productReturn:hover {
+  border-bottom: solid 2px #55286F;
+  transition: 0.1s;
+}
+#confirmeSign div #productReturn:focus {
+  outline: none;
+}
+#confirmeSign div a:hover {
+  border-bottom: solid 2px #55286F;
+  transition: 0.1s;
 }
 
 header {
@@ -57,6 +108,11 @@ header nav ul li a {
 
 #form {
   background-color: #f3e9f1;
+  z-index: 3;
+  left: 50vw;
+  border: solid 2px #55286F;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 #blur {
@@ -65,7 +121,6 @@ header nav ul li a {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  filter: blur(3px);
   opacity: 1;
   z-index: 2;
   background-color: rgba(243, 233, 231, 0.5);
@@ -214,8 +269,8 @@ header nav ul li a {
   margin-right: 26px;
 }
 #panier .cart_button_clear:hover {
-  border-color: #0e8ce4;
-  color: #0e8ce4;
+  border-color: #55286F;
+  color: #55286F;
 }
 #panier .cart_button_checkout {
   display: inline-block;
