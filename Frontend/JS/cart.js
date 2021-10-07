@@ -119,24 +119,23 @@ async function afficherForm() {
                                 <div class="col-5 p-2">
                                     <div class="form-group">
                                         <label for="Contact">Contact</label>
-                                        <input type="email" class="form-control" placeholder="Email">
-                                        
-                                        <input type="number" class="form-control" placeholder="Telephone">
+                                        <input id="email" type="email" class="form-control" placeholder="Email" required>
+                                        <input id="telephone" type="number" class="form-control" placeholder="Telephone">
                                         <small class="form-text text-muted">We'll never share your contact's informations with anyone else.</small>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Destinataire</label>
-                                        <input type="text" class="form-control" placeholder="Nom">
-                                        <input type="text" class="form-control" placeholder="Prenom">
+                                        <input id="name" type="text" class="form-control" placeholder="Nom" required>
+                                        <input id="prenom" type="text" class="form-control" placeholder="Prenom" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="location">Adresse</label>
                                         <div class="d-flex">
-                                            <input type="number" class="form-control" placeholder="n°">
+                                            <input id="numeroRue" type="number" class="form-control" placeholder="n°" required>
                                             <select id="selectForm" name="streetType">
                                             </select>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Adresse">
+                                        <input id="adresse" type="text" class="form-control" placeholder="Adresse" required>
                                     </div>
                                 </div>
                                 <div class="col-5 p-2">
@@ -149,33 +148,28 @@ async function afficherForm() {
                                     </div>    
                                     <div>
                                         <label class="credit-card-label">Nom sur la carte</label>
-                                        <input type="text" class="form-control credit-inputs" placeholder="Name">
+                                        <input id="nameCard" type="text" class="form-control credit-inputs" placeholder="Name" required>
                                     </div>
                                     <div>
                                         <label class="credit-card-label">Numéros de carte</label>
-                                        <input type="text" class="form-control credit-inputs" placeholder="0000 0000 0000 0000">
+                                        <input id="numeroCard" type="text" class="form-control credit-inputs" placeholder="0000 0000 0000 0000" required>
                                     </div>  
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label class="credit-card-label">Date</label>
-                                            <input type="text" class="form-control credit-inputs" placeholder="12/24">
+                                            <input id="dateCard" type="text" class="form-control credit-inputs" placeholder="12/24" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="credit-card-label">CVV</label>
-                                            <input type="text" class="form-control credit-inputs" placeholder="342">
+                                            <input id="securityCard" type="text" class="form-control credit-inputs" placeholder="342" required>
                                         </div>
-                                    </div>
-                                        <hr class="line">
-                                        <div class="d-flex justify-content-between information"><span>Subtotal</span><span>$3000.00</span></div>
-                                        <div class="d-flex justify-content-between information"><span>Shipping</span><span>$20.00</span></div>
-                                        <div class="d-flex justify-content-between information"><span>Total(Incl. taxes)</span><span>$3020.00</span></div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="d-flex justify-content-between p-3">
                                 <button onclick="removeSign">Continuer mes achats</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" onclick="purchaseCart()">Submit</button>
                             </div>
                         </form>`;
         document.getElementById("purchase").insertAdjacentHTML('afterbegin', htmlForm);
@@ -211,4 +205,57 @@ async function inputOnChange(v, idProduct) {
         }  
     }
     afficherCart(realPanier);
+}
+
+async function purchaseCart() {
+
+    let contact = {
+        email: document.getElementById("email").value,
+        telephone: document.getElementById("telephone").value,
+        name: document.getElementById("name").value,
+        prenom: document.getElementById("prenom").value,
+        numeroRue: document.getElementById("numeroRue").value,
+        odonymieValue: document.getElementById("selectForm").value,
+        adresse: document.getElementById("adresse").value,
+      };
+
+    let banking = {
+        nameCard: document.getElementById("nameCard").value,
+        numeroCard: document.getElementById("numeroCard").value,
+        dateCard: document.getElementById("dateCard").value,
+        securityCard: document.getElementById("securityCard").value,
+    }
+
+    let purchaseSend = contact + banking + realPanier
+    console.log(purchaseSend)
+    fetch("http://localhost:3000/api/cameras/order", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(purchaseSend)
+    })  
+    .then(response => response.json())
+    .then(response => {
+        let OrderId = response.orderId;
+        localStorage.setItem('orderId', JSON.stringify(OrderId));
+        window.location.replace("./confirmation.html");
+    }) 
+} 
+
+async function formcheck() {
+    const formvalueP = contact.firstName;
+    const formvalueL = contact.lastName;
+    const formvalueA = contact.address;
+    const formvalueC = contact.city;
+    const formvalueE = contact.email;
+    if (
+        /^[A-Za-z]{2,24}$/.test(formvalueP) 
+        && /^[A-Za-z]{2,24}$/.test(formvalueL) 
+        && /^[A-Za-z]{2,24}$/.test(formvalueC)
+        && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formvalueE)
+        && /^(([a-zA-ZÀ-ÿ0-9]+[\s\-]{1}[a-zA-ZÀ-ÿ0-9]+)){1,10}$/.test(formvalueA)) {
+        return true;
+    } 
+    return false
 }
