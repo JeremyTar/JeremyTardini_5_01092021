@@ -136,6 +136,10 @@ async function afficherForm() {
                                             </select>
                                         </div>
                                         <input id="adresse" type="text" class="form-control" placeholder="Adresse" required>
+                                        <div class="d-flex">
+                                            <input id="codePostal" type="text" class="form-control" placeholder="Code postal" required>
+                                            <input id="Ville" type="text" class="form-control" placeholder="Ville" required>
+                                    </div>
                                     </div>
                                 </div>
                                 <div class="col-5 p-2">
@@ -208,17 +212,18 @@ async function inputOnChange(v, idProduct) {
 }
 
 async function purchaseCart() {
-
+    let adresseForm = document.getElementById("numeroRue").value + " " + document.getElementById("selectForm").value + " " + document.getElementById("adresse").value;
+    let cityForm = document.getElementById("codePostal").value + " " + document.getElementById("ville").value;
+    console.log(adresseForm)
     let contact = {
         email: document.getElementById("email").value,
         telephone: document.getElementById("telephone").value,
-        name: document.getElementById("name").value,
-        prenom: document.getElementById("prenom").value,
-        numeroRue: document.getElementById("numeroRue").value,
-        odonymieValue: document.getElementById("selectForm").value,
-        adresse: document.getElementById("adresse").value,
-      };
-
+        lastName: document.getElementById("name").value,
+        firstName: document.getElementById("prenom").value,
+        adresse: adresseForm,
+        city: cityForm,
+      }; 
+      console.log(contact.city)
     let banking = {
         nameCard: document.getElementById("nameCard").value,
         numeroCard: document.getElementById("numeroCard").value,
@@ -226,7 +231,7 @@ async function purchaseCart() {
         securityCard: document.getElementById("securityCard").value,
     }
 
-    let purchaseSend = contact + banking + realPanier
+    let purchaseSend = JSON.stringify(contact + banking + realPanier)
     console.log(purchaseSend)
     fetch("http://localhost:3000/api/cameras/order", {
         method: 'POST',
