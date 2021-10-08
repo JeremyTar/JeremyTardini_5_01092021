@@ -108,11 +108,8 @@ header nav ul li a {
 
 #form {
   background-color: #f3e9f1;
-  z-index: 3;
   left: 50vw;
-  border: solid 2px #55286F;
   padding: 10px;
-  border-radius: 5px;
 }
 
 #blur {

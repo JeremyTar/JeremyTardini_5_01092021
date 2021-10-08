@@ -94,8 +94,6 @@ async function addToCart() {
 // FUNCTION POUR RETOUR SIGN
 
 async function removeSign () {
-    let elemForm = document.getElementById("Form");
-    elemForm.parentNode.removeChild(elemSign);
     let elemSign = document.getElementById("confirmeSign");
     elemSign.parentNode.removeChild(elemSign);
     let elemBlur = document.getElementById("blur");
