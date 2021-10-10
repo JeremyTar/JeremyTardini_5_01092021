@@ -19,14 +19,19 @@
     transform: translateY(100%);
   }
 }
+.box-shadow {
+  -webkit-box-shadow: 3px 3px 20px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 3px 3px 20px 0px rgba(0, 0, 0, 0.5);
+}
+
 * {
   text-decoration: none;
 }
 
 header {
-  border: 2px #AE759F solid;
+  border: 2px #A26769 ridge;
   background-color: #f3e9f1;
-  border-radius: 5px;
+  border-radius: 0 0 10px 10px;
   min-width: 300px;
 }
 header nav {
@@ -44,68 +49,21 @@ header nav ul li {
   margin: 5px;
 }
 header nav ul li a {
-  color: #55286F;
+  color: #6D2E46;
   font-weight: 500;
 }
 
-.article {
+body {
+  background-color: #ECE2D0;
+}
+body #cards {
   display: flex;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  padding: 0;
-  margin: 10px 0px;
 }
-.article .card {
-  background-color: #f3e9f1;
-  min-width: 300px;
-  max-width: 500px;
-  padding: 15px;
-  margin: 5px;
-  border-radius: 5px;
-  border: 2px #AE759F solid;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-.article .card img {
-  image-rendering: inherit;
-  object-fit: contain;
-  width: 100%;
-  height: 150px;
-  border-radius: 5px;
-  margin: 5px;
-}
-.article .card__title {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-}
-.article .card__title p {
-  margin: 0;
-  font-weight: 500;
-  color: #55286F;
-}
-.article .card__title__adds {
-  display: flex;
-  color: #55286F;
-}
-.article .card__buy {
-  display: flex;
-  justify-content: flex-end;
-  height: 30px;
-}
-.article .card__buy input {
-  width: 50px;
-  margin: 0px 5px;
-}
-.article .card__buy button {
-  width: 150px;
-  border-radius: 5px;
-  border-color: #AE759F;
-}
-
-aside .card {
-  height: 200px;
+body #cards li {
+  list-style: none;
+  margin-top: 15px;
 }
 
 footer {
@@ -114,7 +72,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid #AE759F;
+  border: 2px solid #A26769;
   border-radius: 5px;
 }
 footer ul {
@@ -126,7 +84,7 @@ footer ul li {
   list-style: none;
 }
 footer ul li a {
-  color: #55286F;
+  color: #6D2E46;
 }
 footer .row {
   margin: auto;

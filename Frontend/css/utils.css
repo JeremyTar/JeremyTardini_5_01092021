@@ -1,0 +1,26 @@
+@keyframes apparitionSign {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes removeSign {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+.box-shadow {
+  -webkit-box-shadow: 3px 3px 20px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 3px 3px 20px 0px rgba(0, 0, 0, 0.5);
+}
+
+/*# sourceMappingURL=utils.css.map */

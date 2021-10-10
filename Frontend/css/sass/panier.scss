@@ -63,8 +63,10 @@ input{
         }
     }
 }
+
+
 header{
-    border: 2px $secondary--color solid;
+    border: 3px $secondary--color ridge;
     background-color: $primary--color;
     border-radius: 5px;
     min-width: 300px;

@@ -236,7 +236,9 @@ async function purchaseCart() {
     console.log(realPanier)
     purchaseSend.push(contact, banking, realPanier)
     console.log(purchaseSend)
-    JSON.stringify(purchaseSend)
+    purchaseSend.push(banking + contact)
+    let send = JSON.stringify(purchaseSend)
+    console.log(send)
 
     fetch("http://localhost:3000/api/cameras/order", {
         method: 'POST',

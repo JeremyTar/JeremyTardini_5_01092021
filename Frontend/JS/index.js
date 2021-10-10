@@ -14,26 +14,20 @@ async function afficherCardProduct(produit) {
     if(Array.isArray(produit)) {
         for (var i = 0; i < produit.length; i++) {
             productString = JSON.stringify(produit[i]);
-            html =`<li id="${produit[i]._id}" class="card d-sm-flex col-lg-3 col-sm-10">
-                            <a class="text-decoration-none text-reset" href="Produit.html?id=${produit[i]._id}">
-                                <img src="${produit[i].imageUrl}" alt="Camera">
-                                <div class="card__title">
-                                    <p>${produit[i].name}</p>
-                                    <div class="card__title__adds">
-                                        <div>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <p>${produit[i].price /100} €</p>
+            html =`<li id="${produit[i]._id}">
+                            <a class="text-decoration-none" href="Produit.html?id=${produit[i]._id}">
+                                <div class="card" style="width: 18rem;">
+                                    <img class="card-img-top" src="${produit[i].imageUrl}" alt="Camera ${produit[i]._id}">
+                                    <div class="card-body">
+                                        <div class="card__title text-center font-weight-bold">
+                                        <p>${produit[i].name}</p>
                                     </div>
+                                    <p class="card-text text-center">${produit[i].description}</p>
                                 </div>
-                                <p class="text-justify">${produit[i].description}</p>
                             </a>
                         </li>`
             totalCard += html;
+            console.log(totalCard)
         }
         document.getElementById("cards").innerHTML = totalCard;
     }

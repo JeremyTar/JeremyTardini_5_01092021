@@ -1,8 +1,7 @@
 $background--white: #ffff;
 $primary--color:#f3e9f1;
-$secondary--color: #AE759F;
-$tertiary--color: #55286F;
-
+$secondary--color: #A26769;
+$tertiary--color: #6D2E46;
 
 @keyframes apparitionSign {
     0% {
@@ -25,4 +24,9 @@ $tertiary--color: #55286F;
         opacity: 0;
         transform: translateY(100%);
     }
+}
+
+.box-shadow {
+    -webkit-box-shadow: 3px 3px 20px 0px rgba(0,0,0,0.50); 
+    box-shadow: 3px 3px 20px 0px rgba(0,0,0,0.50);
 }
