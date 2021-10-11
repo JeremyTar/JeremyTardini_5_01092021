@@ -1,3 +1,95 @@
+// VARIABLE POUR CSS
+
+$background--white: #ffff;
+$primary--color:#f3e9f1;
+$secondary--color: #A26769;
+$text--color: rgb(38, 22, 36);
+
+
+// CSS GENERALE
+
+*{
+    text-decoration: none;
+}
+
+body {
+    padding: 0;
+    background-color: #FCF6B1;
+}
+
+p{
+    color: $text--color;
+    font-family: "vanio";
+}
+
+h1, h2, h3 {
+    font-family: "Belligerent";
+    color: $text--color;
+}
+
+label{
+    color: $text--color;
+    font-family: "vanio";
+}
+
+header{
+    border-bottom: 2px $secondary--color ridge;
+    background-color: $primary--color;
+    border-radius: 0 0 10px 10px;
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100px;
+        .navigateur{
+            display: flex;
+            justify-content: space-around;
+            p {
+                color: $text--color;
+                font-family: "vanio";
+                margin: 0;
+            }
+            i {
+                color: $text--color;
+                margin: 0 5px;
+            }
+        }
+    }
+}
+
+footer{
+    background-color: $primary--color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid $secondary--color;
+    border-radius: 5px;
+    padding-bottom: 10px;
+    position: fixed;
+    bottom: 0vh;
+    ul{
+        padding: 5px;
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 5px;
+        li{
+            list-style: none;
+            a{
+                font-family: "vanio";
+                color: $text--color;
+
+            }
+        }
+    }
+}
+
+.box-shadow {
+    -webkit-box-shadow: 3px 3px 20px 0px rgba(0,0,0,0.50); 
+    box-shadow: 3px 3px 20px 0px rgba(0,0,0,0.50);
+}
+
+
 //FONT 
 
 @font-face {
@@ -8,15 +100,6 @@
     font-family: 'vanio';
     src: url("../css/sass/Font/Vanio-Regular.ttf");
 }
-
-
-
-// VARIABLE POUR CSS
-
-$background--white: #ffff;
-$primary--color:#f3e9f1;
-$secondary--color: #A26769;
-$tertiary--color: #6D2E46;
 
 // KEYFRAME 
 
@@ -43,7 +126,3 @@ $tertiary--color: #6D2E46;
     }
 }
 
-.box-shadow {
-    -webkit-box-shadow: 3px 3px 20px 0px rgba(0,0,0,0.50); 
-    box-shadow: 3px 3px 20px 0px rgba(0,0,0,0.50);
-}

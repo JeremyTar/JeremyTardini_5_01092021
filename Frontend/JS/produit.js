@@ -14,24 +14,25 @@ let newUrlId = apiUrl + '/' + apiUrlId;
     // FONCTION D'AFFICHAGE CARD + PERSONALISATION PRODUIT
 
     function afficherProduct(produit) {  
-        let html = `<div class="col-4 p-2">
-                        <img class="img-thumbnail" src="${produit.imageUrl}" alt="${produit.name}">
+        let html = `<div class="p-2 photo">
+                        <img class="card-img-top" src="${produit.imageUrl}" alt="${produit.name}">
                     </div>
-                    <div class="col-4 m-2 p-2">
-                        <div class="description">
-                            <p class="title">${produit.name}</p>
-                            <p>${produit.description}</p>
-                            <p>${produit.price / 100} €</p>
+                    <div class="m-2 p-2">
+                        <h2>${produit.name}</h2>
+                        <p>${produit.description}</p>
+                        <p class="price">${produit.price / 100} €</p>
+                        <div class="d-flex justify-content-around">
+                            <div class="select w-50">
+                                <label> Choissiez votre lentille :</label>
+                                <select id="lense" name="lenses"></select>
+                            </div>
+                            <div class="inputButton w-50">
+                                <p>Quantité : <input id="${produit._id}" type="number" value="1" min="1" max="${produit.stock}"></p>
+                            </div>
                         </div>
-                        <label> Choissiez votre lentille : </label>
-                            <select id="lense" name="lenses">
-                            </select>
-                        <div class="inputButton">
-                            <p> Il reste ${produit.stock} articles disponibles </p>
-                            <input id="${produit._id}" type="number" value="1" min="1" max="${produit.stock}" onchange="controleStock(this, ${produit.stock})" >
-                            <button onclick="addToCart()">Ajouter au panier</button>
-                        </div>
+                        <button onclick="addToCart()">Ajouter au panier</button>
                     </div>`;
+                    
         document.getElementById("produit").innerHTML = html; // ajout au DOM
 
         let lenses = produit.lenses; // recuperation des personalisations
@@ -100,10 +101,3 @@ async function removeSign () {
     elemBlur.parentNode.removeChild(elemBlur);
 
 }
-
-async function controleStock(v, maxStock) {
-    if(v.value <= 0 || v.value > maxStock) {
-        window.alert('Données saisies incorrectes')
-        v.value = 1
-    }
-  }

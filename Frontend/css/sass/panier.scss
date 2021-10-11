@@ -51,14 +51,14 @@ input{
             
         }
         #productReturn:hover {
-            border-bottom: solid 2px $tertiary--color;
+            border-bottom: solid 2px $text--color;
             transition: 0.1s;
         }
         #productReturn:focus {
             outline: none;
         }
         a:hover {
-            border-bottom: solid 2px $tertiary--color;
+            border-bottom: solid 2px $text--color;
             transition: 0.1s;
         }
     }
@@ -82,7 +82,7 @@ header{
                 list-style: none;
                 margin: 5px;
                 a{
-                    color: $tertiary--color;
+                    color: $text--color;
                     font-weight: 500;
                 }
 
@@ -118,7 +118,7 @@ header{
     }
     .button {
         display: inline-block;
-        background: $tertiary--color;
+        background: $text--color;
         border-radius: 5px;
         height: 48px;
         color: $primary--color;
@@ -142,7 +142,7 @@ header{
     }
     .cart_section {
         width: 100%;
-        padding-top: 93px;
+        padding-top: 50px;
         padding-bottom: 111px
     }
     .cart_title {
@@ -251,8 +251,8 @@ header{
         margin-right: 26px;
     }
     .cart_button_clear:hover {
-        border-color: $tertiary--color;
-        color: $tertiary--color;
+        border-color: $text--color;
+        color: $text--color;
     }
     .cart_button_checkout {
         display: inline-block;
@@ -269,26 +269,3 @@ header{
     }
 }
 
-footer{
-    background-color: $primary--color;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid $secondary--color;
-    border-radius: 5px;
-    ul{
-        padding: 5px;
-        display: flex;
-        justify-content: space-evenly;
-        li{
-            list-style: none;
-            a{
-                color: $tertiary--color;
-            }
-        }
-    }
-    .row{
-        margin: auto;
-    }
-}

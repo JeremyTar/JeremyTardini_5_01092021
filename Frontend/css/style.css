@@ -1,4 +1,85 @@
+@charset "UTF-8";
 /* Elements css general */
+* {
+  text-decoration: none;
+}
+
+body {
+  padding: 0;
+  background-color: #FCF6B1;
+}
+
+p {
+  color: #261624;
+  font-family: "vanio";
+}
+
+h1, h2, h3 {
+  font-family: "Belligerent";
+  color: #261624;
+}
+
+label {
+  color: #261624;
+  font-family: "vanio";
+}
+
+header {
+  border-bottom: 2px #A26769 ridge;
+  background-color: #f3e9f1;
+  border-radius: 0 0 10px 10px;
+}
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+}
+header nav .navigateur {
+  display: flex;
+  justify-content: space-around;
+}
+header nav .navigateur p {
+  color: #261624;
+  font-family: "vanio";
+  margin: 0;
+}
+header nav .navigateur i {
+  color: #261624;
+  margin: 0 5px;
+}
+
+footer {
+  background-color: #f3e9f1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top: 2px solid #A26769;
+  border-radius: 5px;
+  padding-bottom: 10px;
+  position: fixed;
+  bottom: 0vh;
+}
+footer ul {
+  padding: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5px;
+}
+footer ul li {
+  list-style: none;
+}
+footer ul li a {
+  font-family: "vanio";
+  color: #261624;
+}
+
+.box-shadow {
+  -webkit-box-shadow: 3px 3px 20px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 3px 3px 20px 0px rgba(0, 0, 0, 0.5);
+}
+
 @font-face {
   font-family: "Belligerent";
   src: url("../css/sass/Font/belligerent.ttf");
@@ -27,62 +108,12 @@
     transform: translateY(100%);
   }
 }
-.box-shadow {
-  -webkit-box-shadow: 3px 3px 20px 0px rgba(0, 0, 0, 0.5);
-  box-shadow: 3px 3px 20px 0px rgba(0, 0, 0, 0.5);
-}
-
-* {
-  text-decoration: none;
-}
-
-header {
-  border-bottom: 2px #A26769 ridge;
-  background-color: #f3e9f1;
-  border-radius: 0 0 10px 10px;
-}
-header nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100px;
-}
-header nav .navigateur {
-  display: flex;
-  justify-content: space-around;
-}
-header nav .navigateur p {
-  color: #261624;
-  font-family: "vanio";
-  margin: 0;
-}
-header nav .navigateur i {
-  color: #261624;
-  margin: 0 5px;
-}
-header nav .navigateur:hover {
-  border-bottom: solid 2px ridge #261624;
-}
-
-main h2 {
-  font-family: "Belligerent";
-  color: #261624;
-}
-main p {
-  font-family: "vanio";
-  color: #261624;
-}
-main h3 {
-  font-family: "Belligerent";
-  font-size: 1.3em;
-  color: #261624;
-}
-
 #cards {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   padding: 0;
+  margin: 0 5px;
 }
 #cards li {
   list-style: none;
@@ -92,29 +123,92 @@ main h3 {
   border-radius: 10px;
 }
 
-footer {
-  background-color: #f3e9f1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-top: 2px solid #A26769;
+#blur {
+  content: "";
+  display: block;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  opacity: 1;
+  z-index: 2;
+  background-color: rgba(243, 233, 231, 0.5);
+}
+
+#confirmeSign {
+  animation: apparitionSign 1s ease forwards;
+  opacity: 1;
+  position: fixed;
+  top: 50vh;
+  left: 30vw;
+  border: solid 2px #A26769;
   border-radius: 5px;
-  padding-bottom: 10px;
-}
-footer ul {
+  z-index: 3;
+  background-color: #f3e9f1;
   padding: 5px;
+  margin: auto;
+}
+#confirmeSign div {
   display: flex;
+  justify-content: space-between;
+}
+#confirmeSign div #productReturn {
+  cursor: pointer;
+  border: none;
+  background-color: #f3e9f1;
+}
+#confirmeSign div #productReturn:hover {
+  border-bottom: solid 2px #261624;
+  transition: 0.1s;
+}
+#confirmeSign div #productReturn:focus {
+  outline: none;
+}
+#confirmeSign div a:hover {
+  border-bottom: solid 2px #261624;
+  transition: 0.1s;
+}
+
+#produit {
+  background-color: #f3e9f1;
+  margin: 10px 0;
+  display: flex;
+  border: ridge 2px #A26769;
   justify-content: space-evenly;
-  margin-top: 5px;
 }
-footer ul li {
-  list-style: none;
+#produit img {
+  image-rendering: inherit;
+  object-fit: cover;
 }
-footer ul li a {
-  color: #6D2E46;
-  font-family: "vanio";
+#produit p {
+  margin: 0;
+  padding: 5px 0;
+}
+#produit .select {
+  padding: 5px;
+}
+#produit input {
+  /* Firefox */
+  -moz-appearance: textfield;
+  /* Chrome */
+  /* Opéra*/
+}
+#produit input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#produit input::-o-inner-spin-button {
+  -o-appearance: none;
+  margin: 0;
+}
+#produit button {
+  border: 2px ridge #A26769;
+  border-radius: 5px;
+  background-color: #FFFF;
   color: #261624;
+  width: 150px;
+  height: 50px;
+  font-weight: 500;
+  margin: 10px 0;
 }
 
 /*# sourceMappingURL=style.css.map */

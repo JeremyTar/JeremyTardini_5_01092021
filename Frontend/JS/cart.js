@@ -184,15 +184,6 @@ async function afficherForm() {
 
 
 function inputOnChange(v, idProduct) {
-    for(let i = 0 ; i < realPanier.length; i++) {
-        if(realPanier[i].quantity > realPanier[i].stock) {
-            alert("Nous n'avons pas assez de stock. Contactez le siege au 00.00.00.00.00");
-            realPanier[i].quantity = 1;
-            document.getElementById(idProduct).value = 1;
-            let modifPanier = JSON.stringify(realPanier[i]);
-            localStorage.setItem(idProduct, modifPanier);
-        }
-    }
     if(v.value <= 0) {
         localStorage.removeItem(idProduct);
         location.reload();

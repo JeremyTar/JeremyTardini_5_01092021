@@ -4,25 +4,24 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://kit.fontawesome.com/348d9b1434.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="../css/product.css">
+        <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/bootstrap.css">
     </head>
-    <body class="container col-12" id="body">
+    <body id="body">
         <header class="col-12">
-            <nav class="navbar">
-                <h1><a href="../Html/Index.html" class="navbar-brand col-2"><img  src="../../Backend/images/logo.PNG" alt="logo Orinoco"></a></h1>
-                <ul class="">
-                    <li class="">
-                        <a href="Panier.html">Votre Panier</a>
-                    </li>
-
-                </ul>
+            <nav class="navbar d-md-flex justify-content-between">
+                <a href="Index.html" class="navbar-brand col-2">
+                    <h1>
+                        <img  src="../../Backend/images/logo.PNG" alt="logo Orinoco">
+                    </h1>
+                </a>
+                <a class="navigateur" href="Panier.html"><p>Votre panier</p><i class="fas fa-shopping-cart"></i></a>
             </nav>
         </header>
 
-        <main id="main">           
-            <section id="produit" class="card col-12 flex-row">
-            </section>
+        <main id="main" class="d-flex justify-content-center p-3">           
+            <article id="produit" class="card box-shadow col-8 d-flex">
+            </article>
         </main>
 
         <footer class="col-12">
@@ -31,7 +30,7 @@
                 <li><a href="#">Condition générale de ventes</a></li>
                 <li><a href="#">Informations légales</a></li>
             </ul>
-            <img class="row" src="../../Backend/images/logo.PNG" alt="logo Orinoco">
+            <a href="#" class="d-flex justify-content-center"><img src="../../Backend/images/logo.PNG" alt="logo Orinoco"></a> 
         </footer>
     </body>
     <script src="../JS/global.js"></script>
