@@ -20,14 +20,13 @@ async function afficherCardProduct(produit) {
                                     <img class="card-img-top" src="${produit[i].imageUrl}" alt="Camera ${produit[i]._id}">
                                     <div class="card-body">
                                         <div class="card__title text-center font-weight-bold">
-                                        <p>${produit[i].name}</p>
+                                        <h3>${produit[i].name}</h3>
                                     </div>
                                     <p class="card-text text-center">${produit[i].description}</p>
                                 </div>
                             </a>
                         </li>`
             totalCard += html;
-            console.log(totalCard)
         }
         document.getElementById("cards").innerHTML = totalCard;
     }

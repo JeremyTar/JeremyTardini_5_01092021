@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "Belligerent";
+  src: url("./Font/belligerent.ttf") format("ttf");
+}
 @keyframes apparitionSign {
   0% {
     opacity: 0;

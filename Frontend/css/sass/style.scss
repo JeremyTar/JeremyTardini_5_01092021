@@ -5,44 +5,65 @@
     text-decoration: none;
 }
 
+
 header{
-    border: 2px $secondary--color ridge;
+    border-bottom: 2px $secondary--color ridge;
     background-color: $primary--color;
     border-radius: 0 0 10px 10px;
-    min-width: 300px;
     nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        ul {
+        height: 100px;
+        .navigateur{
             display: flex;
-            justify-content: space-evenly;
-            margin: 0;
-            li {
-                list-style: none;
-                margin: 5px;
-                a{
-                    color: $tertiary--color;
-                    font-weight: 500;
-                }
-
+            justify-content: space-around;
+            p {
+                color: rgb(38, 22, 36);
+                font-family: "vanio";
+                margin: 0;
+            }
+            i {
+                color: rgb(38, 22, 36);
+                margin: 0 5px;
             }
         }
+        .navigateur:hover {
+            border-bottom: solid 2px ridge rgb(38, 22, 36);
 
-    }
-}
-body {
-    background-color: #ECE2D0;
-    #cards {
-        display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
-        li {
-            list-style: none;
-            margin-top: 15px;
         }
     }
 }
+
+main{
+    h2 {
+        font-family: "Belligerent";
+        color: rgb(38, 22, 36);
+    }
+    p{
+        font-family: "vanio";
+        color: rgb(38, 22, 36);
+    }
+    h3{
+        font-family: "Belligerent";
+        font-size: 1.3em;
+        color: rgb(38, 22, 36);
+    }
+}
+#cards {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 0;
+    li {
+        list-style: none;
+        margin-top: 15px;
+        border: 2px $secondary--color ridge;
+        background-color: $primary--color;
+        border-radius: 10px;
+    }
+}
+
 
 
 footer{
@@ -51,20 +72,25 @@ footer{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid $secondary--color;
+    border-top: 2px solid $secondary--color;
     border-radius: 5px;
+    padding-bottom: 10px;
     ul{
         padding: 5px;
         display: flex;
         justify-content: space-evenly;
+        margin-top: 5px;
         li{
             list-style: none;
             a{
                 color: $tertiary--color;
+                font-family: "vanio";
+                color: rgb(38, 22, 36);
+
             }
         }
-    }
-    .row{
-        margin: auto;
+        a {
+
+        }
     }
 }

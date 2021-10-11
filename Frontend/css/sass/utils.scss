@@ -1,7 +1,24 @@
+//FONT 
+
+@font-face {
+    font-family: 'Belligerent';
+    src: url("../css/sass/Font/belligerent.ttf");
+}
+@font-face {
+    font-family: 'vanio';
+    src: url("../css/sass/Font/Vanio-Regular.ttf");
+}
+
+
+
+// VARIABLE POUR CSS
+
 $background--white: #ffff;
 $primary--color:#f3e9f1;
 $secondary--color: #A26769;
 $tertiary--color: #6D2E46;
+
+// KEYFRAME 
 
 @keyframes apparitionSign {
     0% {

@@ -183,7 +183,7 @@ async function afficherForm() {
 }
 
 
-async function inputOnChange(v, idProduct) {
+function inputOnChange(v, idProduct) {
     for(let i = 0 ; i < realPanier.length; i++) {
         if(realPanier[i].quantity > realPanier[i].stock) {
             alert("Nous n'avons pas assez de stock. Contactez le siege au 00.00.00.00.00");
