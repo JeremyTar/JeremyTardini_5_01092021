@@ -115,3 +115,164 @@
 }
 
 // PAGE PANIER 
+
+
+#panier {
+    background-color: $primary--color;
+    border: ridge 2px $secondary--color;
+    .cart_section {
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 111px
+    }
+    ul {
+        list-style: none;
+        margin-bottom: 0px
+    }
+    .button {
+        display: inline-block;
+        background: $text--color;
+        border-radius: 5px;
+        height: 48px;
+        color: $primary--color;
+        -webkit-transition: all 200ms ease;
+        -moz-transition: all 200ms ease;
+        -ms-transition: all 200ms ease;
+        -o-transition: all 200ms ease;
+        transition: all 200ms ease;
+        a {
+            display: block;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 48px;
+            color: $primary--color;
+            padding-left: 35px;
+            padding-right: 35px
+        }
+    }
+    .button:hover {
+        opacity: 0.8
+    }
+    .cart_title {
+        font-size: 30px;
+        font-weight: 500
+    }
+    .cart_items {
+        margin-top: 8px
+    }
+    #cart_list {
+        border: solid 1px #e8e8e8;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+    .cart_item {
+        width: 100%;
+        padding: 15px;
+        padding-right: 46px;
+        height: 125px;
+        &_image {
+            width: 133px;
+            margin: 0;
+            img {
+                max-width: 100%
+            }
+            &_info {
+                width: calc(100% - 100px);
+                padding-top: 18px;
+            }
+        }
+        &_name {
+            margin-left: 7.53%;
+        }
+        &_title {
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.5);
+        }
+        &_text {
+            font-size: 18px;
+            margin-top: 20px;
+            input{
+                width: 50px;;
+            }
+            span {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                margin-right: 11px;
+                -webkit-transform: translateY(4px);
+                -moz-transform: translateY(4px);
+                -ms-transform: translateY(4px);
+                -o-transform: translateY(4px);
+                transform: translateY(4px);
+            }
+        }
+        &_price {
+            text-align: right;
+        }
+        &_total {
+            text-align: right;
+        }
+    }
+    .order_total {
+        width: 100%;
+        height: 60px;
+        margin-top: 30px;
+        border: solid 1px #e8e8e8;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+        padding-right: 46px;
+        padding-left: 15px;
+        background-color: #fff;
+        &_title {
+            display: inline-block;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.5);
+            line-height: 60px;
+        }
+        &_amount {
+            display: inline-block;
+            font-size: 18px;
+            font-weight: 500;
+            margin-left: 26px;
+            line-height: 60px;
+        }
+    }
+    .cart_buttons {
+        margin-top: 60px;
+        text-align: right;
+    } 
+    .cart_button_clear {
+        display: inline-block;
+        border: none;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 48px;
+        color: rgba(0, 0, 0, 0.5);
+        background: #FFFFFF;
+        border: solid 1px #b2b2b2;
+        padding-left: 35px;
+        padding-right: 35px;
+        outline: none;
+        cursor: pointer;
+        margin-right: 26px;
+    }
+    .cart_button_clear:hover {
+        border-color: $text--color;
+        color: $text--color;
+    }
+    .cart_button_checkout {
+        display: inline-block;
+        border: none;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 48px;
+        color: #FFFFFF;
+        padding-left: 35px;
+        padding-right: 35px;
+        outline: none;
+        cursor: pointer;
+        vertical-align: top;
+    }
+}
+

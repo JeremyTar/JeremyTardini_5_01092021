@@ -49,9 +49,11 @@ async function afficherCart (realPanier) {
         for(let i = 0; i < realPanier.length; i++) {
             price = realPanier[i].price / 100;
             quantity = realPanier[i].quantity;
-            htmlLi = `<li class="cart_item clearfix">
-                            <div class="cart_item_image"><img src="${realPanier[i].imageUrl}" alt=""></div>
-                            <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+            htmlLi = `<li class="cart_item clearfix d-flex justify-content-between">
+                            <div class="cart_item_image">
+                                <img src="${realPanier[i].imageUrl}" alt="">
+                            </div>
+                            <div class="cart_item_info d-flex justify-content-around">
                                 <div class="cart_item_name cart_info_col">
                                     <div class="cart_item_title">Name</div>
                                     <div class="cart_item_text">${realPanier[i].name}</div>
@@ -81,7 +83,7 @@ async function afficherCart (realPanier) {
                                 <div class="row">
                                     <div class="col-lg-10 offset-lg-1">
                                         <div class="cart_container">
-                                            <div class="cart_title">Shopping Cart</div>
+                                            <div class="cart_title mb-2"><h2>Shopping Cart</h2></div>
                                             <div class="cart_items">
                                                 <ul id="cart_list">
                                                 </ul>
@@ -114,7 +116,6 @@ async function afficherForm() {
 
     }
     else {
-        let blurDiv = '<div id="blur"></div>';
         let htmlForm = `<div class="d-flex justify-content-around">
                             <div class="col-5 p-2">
                                 <div class="form-group">
@@ -200,10 +201,8 @@ function inputOnChange(v, idProduct) {
 
 async function purchaseCart() {
 
-    let purchaseSend = [];
     let adresseForm = document.getElementById("numeroRue").value + " " + document.getElementById("selectForm").value + " " + document.getElementById("adresse").value;
     let cityForm = document.getElementById("codePostal").value + " " + document.getElementById("ville").value;
-    console.log(adresseForm)
     let contact = {
         email: document.getElementById("email").value,
         telephone: document.getElementById("telephone").value,
@@ -219,28 +218,20 @@ async function purchaseCart() {
         dateCard: document.getElementById("dateCard").value,
         securityCard: document.getElementById("securityCard").value,
     }
-    JSON.stringify(contact)
-    JSON.stringify(banking)
-    JSON.stringify(realPanier)
-    console.log(contact)
-    console.log(banking)
-    console.log(realPanier)
-    purchaseSend.push(contact, banking, realPanier)
+    
+    let purchaseSend = JSON.stringify(contact, banking, realPanier)
     console.log(purchaseSend)
-    purchaseSend.push(banking + contact)
-    let send = JSON.stringify(purchaseSend)
-    console.log(send)
-
     fetch("http://localhost:3000/api/cameras/order", {
         method: 'POST',
         headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: purchaseSend
-    })  
+    })
     .then(response => response.json())
-    .then(data => {
-        let OrderId = response.data;
+    .then(response => {
+        let OrderId = response.OrderId;
         localStorage.setItem('orderId', JSON.stringify(OrderId));
         // window.location.replace("./confirmation.html");
     }) 

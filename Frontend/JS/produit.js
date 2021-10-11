@@ -30,7 +30,7 @@ let newUrlId = apiUrl + '/' + apiUrlId;
                                 <p>Quantité : <input id="${produit._id}" type="number" value="1" min="1" max="${produit.stock}"></p>
                             </div>
                         </div>
-                        <button onclick="addToCart()">Ajouter au panier</button>
+                        <button button class="cart_button_checkout" onclick="addToCart()">Ajouter au panier</button>
                     </div>`;
                     
         document.getElementById("produit").innerHTML = html; // ajout au DOM
