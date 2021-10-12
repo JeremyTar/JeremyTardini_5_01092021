@@ -85,22 +85,6 @@
     .select{
         padding: 5px;
     }
-    input{
-        /* Firefox */
-        -moz-appearance: textfield;
-    
-        /* Chrome */
-        &::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin:0;
-        }
-    
-        /* Opéra*/
-        &::-o-inner-spin-button {
-            -o-appearance: none;
-            margin: 0; 
-        }
-    }
     button{
         border: 2px ridge $secondary--color;
         border-radius: 5px;
@@ -169,17 +153,28 @@
         width: 100%;
         padding: 15px;
         padding-right: 46px;
-        height: 125px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        input{ 
+            width: 50px; 
+         }
+        &_info {
+            width: 80%;
+            padding-top: 18px;
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
         &_image {
-            width: 133px;
+            width: 20%;
             margin: 0;
+            min-width: 100px;
             img {
                 max-width: 100%
+
             }
-            &_info {
-                width: calc(100% - 100px);
-                padding-top: 18px;
-            }
+
         }
         &_name {
             margin-left: 7.53%;
@@ -276,3 +271,8 @@
     }
 }
 
+
+#confirmation {
+    width: 400px;
+    height: 500px;
+}

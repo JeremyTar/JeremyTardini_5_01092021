@@ -36,6 +36,7 @@ header{
     border-bottom: 2px $secondary--color ridge;
     background-color: $primary--color;
     border-radius: 0 0 10px 10px;
+    margin-bottom: 5px;
     nav {
         display: flex;
         justify-content: space-between;
@@ -53,7 +54,7 @@ header{
             i {
                 color: $text--color;
                 margin: 0 5px;
-                font-size: 2em;
+                font-size: 1.5em;
             }
         }
     }
@@ -91,6 +92,22 @@ footer{
     box-shadow: 3px 3px 20px 0px rgba(0,0,0,0.50);
 }
 
+input{
+    /* Firefox */
+    -moz-appearance: textfield;
+
+    /* Chrome */
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin:0;
+    }
+
+    /* Opéra*/
+    &::-o-inner-spin-button {
+        -o-appearance: none;
+        margin: 0; 
+    }
+}
 
 //FONT 
 

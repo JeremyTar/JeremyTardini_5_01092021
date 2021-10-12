@@ -47,6 +47,9 @@ async function afficherCart (realPanier) {
         }
 
         for(let i = 0; i < realPanier.length; i++) {
+
+            // Liste par ID dans localStorage
+
             price = realPanier[i].price / 100;
             quantity = realPanier[i].quantity;
             htmlLi = `<li class="cart_item clearfix d-flex justify-content-between">
@@ -78,6 +81,9 @@ async function afficherCart (realPanier) {
                         </li>`;
             htmlList.push(htmlLi)
         }
+
+        // ROW montant total
+
         let htmlCart =`<div class="cart_section">
                             <div class="container-fluid">
                                 <div class="row">
@@ -105,44 +111,45 @@ async function afficherCart (realPanier) {
                             </div>
                         </div>`;
         document.getElementById("panier").innerHTML = htmlCart;
+
+        // ajout des listes créent précedement
+
         for( i = 0 ; i < htmlList.length; i++) {
             document.getElementById("cart_list").insertAdjacentHTML('beforeend', htmlList[i]);
         }
     }
 }
 
-async function afficherForm() {
-    if(document.getElementById("paiment")) {
+// FONCTION POUR AFFICHER LE FORMULAIRE CONFIRMATION COMMANDE
 
-    }
-    else {
-        let htmlForm = `<div class="d-flex justify-content-around">
-                            <div class="col-5 p-2">
-                                <div class="form-group">
-                                    <label for="Contact">Contact</label>
-                                    <input id="email" type="email" class="form-control" placeholder="Email" required>
-                                    <small class="form-text text-muted">We'll never share your contact's informations with anyone else.</small>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">Destinataire</label>
-                                    <input id="name" type="text" class="form-control" placeholder="Nom" required>
-                                    <input id="prenom" type="text" class="form-control" placeholder="Prenom" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="location">Adresse</label>
-                                    <div class="d-flex">
-                                        <input id="numeroRue" type="number" class="form-control" placeholder="n°" required>
-                                        <select id="selectForm" name="streetType">
-                                        </select>
-                                    </div>
-                                    <input id="adresse" type="text" class="form-control" placeholder="Adresse" required>
-                                    <div class="d-flex">
-                                        <input id="codePostal" type="text" class="form-control" placeholder="Code postal" required>
-                                        <input id="ville" type="text" class="form-control" placeholder="Ville" required>
-                                </div>
-                                </div>
+async function afficherForm() {
+    let htmlForm = `<div id="sendForm" class="d-flex justify-content-around">
+                        <div class="col-8 p-2">
+                            <div class="form-group">
+                                <label for="Contact">Contact</label>
+                                <input id="email" type="email" class="form-control" placeholder="Email" required>
+                                <small class="form-text text-muted">We'll never share your contact's informations with anyone else.</small>
                             </div>
-                        </div>`;
+                            <div class="form-group">
+                                <label for="name">Destinataire</label>
+                                <input id="name" type="text" class="form-control" placeholder="Nom" required>
+                                <input id="prenom" type="text" class="form-control" placeholder="Prenom" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Adresse</label>
+                                <div class="d-flex">
+                                    <input id="numeroRue" type="number" class="form-control" placeholder="n°" required>
+                                    <select id="selectForm" name="streetType">
+                                    </select>
+                                </div>
+                                <input id="adresse" type="text" class="form-control" placeholder="Adresse" required>
+                                <div class="d-flex">
+                                    <input id="codePostal" type="text" class="form-control" placeholder="Code postal" required>
+                                    <input id="ville" type="text" class="form-control" placeholder="Ville" required>
+                            </div>
+                            </div>
+                        </div>
+                    </div>`;
         document.getElementById("form").insertAdjacentHTML('afterbegin', htmlForm);
         let purchaseButton = document.getElementById("purchase")
         purchaseButton.setAttribute("onclick", "purchaseCart()")
@@ -150,11 +157,12 @@ async function afficherForm() {
         for(let i = 0; i < listOdonymie.length; i++) {
             optionOdonymie = optionOdonymie + `<option value="${listOdonymie[i]}">${listOdonymie[i]}</option>`;
             
-    }
+        }
     document.getElementById("selectForm").innerHTML = optionOdonymie;
-    }
-}
+ }
 
+
+// FONCTION POUR LE CHANGEMENT DE VALEUR DANS L'INPUT DU PANIER
 
 function inputOnChange(v, idProduct) {
     if(v.value <= 0) {
@@ -173,30 +181,39 @@ function inputOnChange(v, idProduct) {
 
 async function purchaseCart() {
 
+    // FONCTION DE VERIFICATION CARACTERE FORMULAIRE
+
+    async function formcheck() {
+        const formvalueP = contact.firstName;
+        const formvalueL = contact.lastName;
+        const formvalueA = contact.address;
+        const formvalueC = contact.city;
+        const formvalueE = contact.email;
+        if (
+            /^[A-Za-z]{2,24}$/.test(formvalueP) 
+            && /^[A-Za-z]{2,24}$/.test(formvalueL) 
+            && /^[A-Za-z]{2,24}$/.test(formvalueC)
+            && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formvalueE)
+            && /^(([a-zA-ZÀ-ÿ0-9]+[\s\-]{1}[a-zA-ZÀ-ÿ0-9]+)){1,10}$/.test(formvalueA)) {
+            return true;
+        } 
+        return false
+    }
+    //verification du formulaire
+    const formCheck = formcheck()
+    // recupération des informations sur le formulaires + produits
     let adresseForm = document.getElementById("numeroRue").value + " " + document.getElementById("selectForm").value + " " + document.getElementById("adresse").value;
     let cityForm = document.getElementById("codePostal").value + " " + document.getElementById("ville").value;
-
-    console.log(realPanier)
-    // let contact = {
-    //     firstName: document.getElementById("prenom").value,
-    //     lastName: document.getElementById("name").value,
-    //     address: adresseForm,
-    //     city: cityForm,
-    //     email: document.getElementById("email").value,
-    //   };
-    
-
     let totalId = [];
-
     for(let i = 0; i < realPanier.length; i++) {
-       for(let y = 0; y < realPanier[i].quantity; y++) {
-           totalId.push(realPanier[i]._id);
-       }
+    for(let y = 0; y < realPanier[i].quantity; y++) {
+        totalId.push(realPanier[i]._id);
+    }
 
     }
-    console.log(totalId);
-    // let productsAvant = realPanier;
-    
+
+    // construction de l'objet pour envoie a l'API
+
     let productsBody = {
         contact: {
             firstName: document.getElementById("prenom").value,
@@ -208,6 +225,11 @@ async function purchaseCart() {
         products: totalId,
     }
 
+    // Supression du panier Actuel
+
+    localStorage.clear()
+
+    // Envoie a l'API
 
     fetch("http://localhost:3000/api/cameras/order", {
         method: 'POST',
@@ -218,27 +240,10 @@ async function purchaseCart() {
         body: JSON.stringify(productsBody)
     })
     .then(response => response.json())
-    .then(data => {
+    .then(data => {   // ajout l'ordir id dans le storage
         let OrderId = data.orderId;
         localStorage.setItem('orderId', JSON.stringify(OrderId));
-        // window.location.replace("./confirmation.html");
-        console.log(data)
+        window.location.replace("./Confirmation.html");
     }) 
 } 
 
-async function formcheck() {
-    const formvalueP = contact.firstName;
-    const formvalueL = contact.lastName;
-    const formvalueA = contact.address;
-    const formvalueC = contact.city;
-    const formvalueE = contact.email;
-    if (
-        /^[A-Za-z]{2,24}$/.test(formvalueP) 
-        && /^[A-Za-z]{2,24}$/.test(formvalueL) 
-        && /^[A-Za-z]{2,24}$/.test(formvalueC)
-        && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formvalueE)
-        && /^(([a-zA-ZÀ-ÿ0-9]+[\s\-]{1}[a-zA-ZÀ-ÿ0-9]+)){1,10}$/.test(formvalueA)) {
-        return true;
-    } 
-    return false
-}

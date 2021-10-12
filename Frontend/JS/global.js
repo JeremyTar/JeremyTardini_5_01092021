@@ -26,3 +26,4 @@ async function removeSign () {
   elemBlur.parentNode.removeChild(elemBlur);
 
 }
+
