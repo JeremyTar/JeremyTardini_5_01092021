@@ -43,10 +43,12 @@ header nav .navigateur p {
   color: #261624;
   font-family: "vanio";
   margin: 0;
+  font-size: 1.2em;
 }
 header nav .navigateur i {
   color: #261624;
   margin: 0 5px;
+  font-size: 2em;
 }
 
 footer {
@@ -58,8 +60,7 @@ footer {
   border-top: 2px solid #A26769;
   border-radius: 5px;
   padding-bottom: 10px;
-  position: fixed;
-  bottom: 0vh;
+  margin-top: 10px;
 }
 footer ul {
   padding: 5px;
@@ -73,6 +74,7 @@ footer ul li {
 footer ul li a {
   font-family: "vanio";
   color: #261624;
+  font-size: 1.2em;
 }
 
 .box-shadow {

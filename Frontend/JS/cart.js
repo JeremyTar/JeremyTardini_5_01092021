@@ -121,7 +121,6 @@ async function afficherForm() {
                                 <div class="form-group">
                                     <label for="Contact">Contact</label>
                                     <input id="email" type="email" class="form-control" placeholder="Email" required>
-                                    <input id="telephone" type="number" class="form-control" placeholder="Telephone">
                                     <small class="form-text text-muted">We'll never share your contact's informations with anyone else.</small>
                                 </div>
                                 <div class="form-group">
@@ -141,33 +140,6 @@ async function afficherForm() {
                                         <input id="codePostal" type="text" class="form-control" placeholder="Code postal" required>
                                         <input id="ville" type="text" class="form-control" placeholder="Ville" required>
                                 </div>
-                                </div>
-                            </div>
-                            <div class="col-5 p-2">
-                                <div class="payment-info" id="paiment">
-                                        <div class="d-flex justify-content-between align-items-center"><span>Coordonnées Bancaires</span></div><span class="type d-block mt-3 mb-1">Card type</span>
-                                        <label class="radio"> <input type="radio" name="card" value="payment" checked> <span><img width="30" src="https://img.icons8.com/color/48/000000/mastercard.png" /></span> </label>
-                                        <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/visa.png" /></span> </label>
-                                        <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/ultraviolet/48/000000/amex.png" /></span> </label>
-                                        <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/paypal.png" /></span> </label>               
-                                </div>    
-                                <div>
-                                    <label class="credit-card-label">Nom sur la carte</label>
-                                    <input id="nameCard" type="text" class="form-control credit-inputs" placeholder="Name" required>
-                                </div>
-                                <div>
-                                    <label class="credit-card-label">Numéros de carte</label>
-                                    <input id="numeroCard" type="text" class="form-control credit-inputs" placeholder="0000 0000 0000 0000" required>
-                                </div>  
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="credit-card-label">Date</label>
-                                        <input id="dateCard" type="text" class="form-control credit-inputs" placeholder="12/24" required>
-                                    </div>
-                                    <div class="col-md-6"id="purchaseButton>
-                                        <label class="credit-card-label">CVV</label>
-                                        <input id="securityCard" type="text" class="form-control credit-inputs" placeholder="342" required>
-                                    </div>
                                 </div>
                             </div>
                         </div>`;
@@ -203,37 +175,54 @@ async function purchaseCart() {
 
     let adresseForm = document.getElementById("numeroRue").value + " " + document.getElementById("selectForm").value + " " + document.getElementById("adresse").value;
     let cityForm = document.getElementById("codePostal").value + " " + document.getElementById("ville").value;
-    let contact = {
-        email: document.getElementById("email").value,
-        telephone: document.getElementById("telephone").value,
-        lastName: document.getElementById("name").value,
-        firstName: document.getElementById("prenom").value,
-        adresse: adresseForm,
-        city: cityForm,
-      }; 
+
+    console.log(realPanier)
+    // let contact = {
+    //     firstName: document.getElementById("prenom").value,
+    //     lastName: document.getElementById("name").value,
+    //     address: adresseForm,
+    //     city: cityForm,
+    //     email: document.getElementById("email").value,
+    //   };
     
-    let banking = {
-        nameCard: document.getElementById("nameCard").value,
-        numeroCard: document.getElementById("numeroCard").value,
-        dateCard: document.getElementById("dateCard").value,
-        securityCard: document.getElementById("securityCard").value,
+
+    let totalId = [];
+
+    for(let i = 0; i < realPanier.length; i++) {
+       for(let y = 0; y < realPanier[i].quantity; y++) {
+           totalId.push(realPanier[i]._id);
+       }
+
     }
+    console.log(totalId);
+    // let productsAvant = realPanier;
     
-    let purchaseSend = JSON.stringify(contact, banking, realPanier)
-    console.log(purchaseSend)
+    let productsBody = {
+        contact: {
+            firstName: document.getElementById("prenom").value,
+            lastName: document.getElementById("name").value,
+            address: adresseForm,
+            city: cityForm,
+            email: document.getElementById("email").value,
+        },
+        products: totalId,
+    }
+
+
     fetch("http://localhost:3000/api/cameras/order", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: purchaseSend
+        body: JSON.stringify(productsBody)
     })
     .then(response => response.json())
-    .then(response => {
-        let OrderId = response.OrderId;
+    .then(data => {
+        let OrderId = data.orderId;
         localStorage.setItem('orderId', JSON.stringify(OrderId));
         // window.location.replace("./confirmation.html");
+        console.log(data)
     }) 
 } 
 

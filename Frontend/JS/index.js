@@ -31,4 +31,3 @@ async function afficherCardProduct(produit) {
         document.getElementById("cards").innerHTML = totalCard;
     }
 }
-

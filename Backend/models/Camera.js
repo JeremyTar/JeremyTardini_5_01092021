@@ -22,7 +22,6 @@ const cameras = [
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "price": 309900,
     "imageUrl": "vcam_2.jpg",
-    "stock": 50
   },
   {
     "lenses": [
@@ -33,7 +32,6 @@ const cameras = [
     "price": 209900,
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "imageUrl": "vcam_3.jpg",
-    "stock": 50
   },
   {
     "lenses": [
@@ -45,7 +43,6 @@ const cameras = [
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "price": 159900,
     "imageUrl": "vcam_4.jpg",
-    "stock": 50
   },
   {
     "lenses": [
@@ -58,7 +55,6 @@ const cameras = [
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "price": 59900,
     "imageUrl": "vcam_5.jpg",
-    "stock": 50
   }
 ];
 

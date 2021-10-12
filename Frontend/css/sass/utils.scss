@@ -48,10 +48,12 @@ header{
                 color: $text--color;
                 font-family: "vanio";
                 margin: 0;
+                font-size: 1.2em;
             }
             i {
                 color: $text--color;
                 margin: 0 5px;
+                font-size: 2em;
             }
         }
     }
@@ -66,8 +68,7 @@ footer{
     border-top: 2px solid $secondary--color;
     border-radius: 5px;
     padding-bottom: 10px;
-    position: fixed;
-    bottom: 0vh;
+    margin-top: 10px;
     ul{
         padding: 5px;
         display: flex;
@@ -78,6 +79,7 @@ footer{
             a{
                 font-family: "vanio";
                 color: $text--color;
+                font-size: 1.2em
 
             }
         }
