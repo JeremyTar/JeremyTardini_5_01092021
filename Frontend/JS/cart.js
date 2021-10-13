@@ -52,31 +52,26 @@ async function afficherCart (realPanier) {
 
             price = realPanier[i].price / 100;
             quantity = realPanier[i].quantity;
-            htmlLi = `<li class="cart_item clearfix d-flex justify-content-between">
-                            <div class="cart_item_image">
-                                <img src="${realPanier[i].imageUrl}" alt="">
-                            </div>
+            htmlLi = `<li class="cart_item clearfix">
                             <div class="cart_item_info d-flex justify-content-around">
                                 <div class="cart_item_name cart_info_col">
-                                    <div class="cart_item_title">Name</div>
                                     <div class="cart_item_text">${realPanier[i].name}</div>
                                 </div>
                                 <div class="cart_item_color cart_info_col">
-                                    <div class="cart_item_title">Lentille</div>
                                     <div class="cart_item_text">${realPanier[i].lenses}</div>
                                 </div>
                                 <div class="cart_item_quantity cart_info_col">
-                                    <div class="cart_item_title">Quantity</div>
                                     <input id="${realPanier[i]._id}" class="cart_item_text" type="number" value="${quantity}" max="${realPanier[i].stock}" onchange="inputOnChange(this, '${realPanier[i]._id}')" >
                                 </div>
                                 <div class="cart_item_price cart_info_col">
-                                    <div class="cart_item_title">Price</div>
                                     <div class="cart_item_text">${price} €</div>
                                 </div>
                                 <div class="cart_item_total cart_info_col">
-                                    <div class="cart_item_title">Total</div>
                                     <div class="cart_item_text">${getTotalByProduct(quantity,price)} €</div>
                                 </div>
+                            </div>
+                            <div class="cart_item_image d-flex justify-content-around">
+                                <img src="${realPanier[i].imageUrl}" alt="">
                             </div>
                         </li>`;
             htmlList.push(htmlLi)
@@ -91,6 +86,13 @@ async function afficherCart (realPanier) {
                                         <div class="cart_container">
                                             <div class="cart_title mb-2"><h2>Shopping Cart</h2></div>
                                             <div class="cart_items">
+                                                <div class="d-flex justify-content-end menuPanier">
+                                                    <p>Name</p>
+                                                    <p>Lentille</p>
+                                                    <p>Quantité</p>
+                                                    <p>Prix unitaire</p>
+                                                    <p>Prix total</p>
+                                                </div>
                                                 <ul id="cart_list">
                                                 </ul>
                                             </div>
@@ -169,15 +171,23 @@ function inputOnChange(v, idProduct) {
         localStorage.removeItem(idProduct);
         location.reload();
     }
-    for(let i = 0; i < localStorage.length; i++) {
-        if(localStorage.key(i) == idProduct) {
-            realPanier[i].quantity = v.value;
-            let modifPanier = JSON.stringify(realPanier[i]);
-            localStorage.setItem(idProduct, modifPanier);
-        }  
+    else{
+        for(let i = 0; i < localStorage.length; i++) {
+            if(localStorage.key(i) == idProduct) {
+                for(let j = 0; j < realPanier.length; j++) {
+                    if(realPanier[j]._id == idProduct) {
+                        realPanier[j].quantity = v.value;
+                        let modifPanier = JSON.stringify(realPanier[j]);
+                        localStorage.setItem(idProduct, modifPanier);
+                    }
+                }
+            }  
+        }
+        afficherCart(realPanier);
     }
-    afficherCart(realPanier);
 }
+
+
 
 async function purchaseCart() {
 
@@ -201,6 +211,9 @@ async function purchaseCart() {
     }
     //verification du formulaire
     const formCheck = formcheck()
+
+
+    
     // recupération des informations sur le formulaires + produits
     let adresseForm = document.getElementById("numeroRue").value + " " + document.getElementById("selectForm").value + " " + document.getElementById("adresse").value;
     let cityForm = document.getElementById("codePostal").value + " " + document.getElementById("ville").value;
@@ -227,8 +240,6 @@ async function purchaseCart() {
 
     // Supression du panier Actuel
 
-    localStorage.clear()
-
     // Envoie a l'API
 
     fetch("http://localhost:3000/api/cameras/order", {
@@ -243,6 +254,7 @@ async function purchaseCart() {
     .then(data => {   // ajout l'ordir id dans le storage
         let OrderId = data.orderId;
         localStorage.setItem('orderId', JSON.stringify(OrderId));
+
         window.location.replace("./Confirmation.html");
     }) 
 } 

@@ -47,13 +47,10 @@ let newUrlId = apiUrl + '/' + apiUrlId;
 
 async function addToCart() {
     let userCart = await apiCall(newUrlId); // creation d'un objet correspondant a la selection
-
-    let quantityToAdd = document.querySelector("input").value; // recuperation valeur input et personalisation
     let selectedOption = document.getElementById("lense"); // 
-    selectedOption = selectedOption.options[selectedOption.selectedIndex].value; // 
 
-    userCart.lenses = selectedOption; // ajout personalisation et quantite a l'objet
-    userCart.quantity = quantityToAdd; //
+    userCart.lenses = selectedOption.options[selectedOption.selectedIndex].value; // ajout personalisation et quantite a l'objet
+    userCart.quantity = document.querySelector("input").value; //
 
     let userCartJSON = JSON.stringify(userCart)  // integration local storage
     localStorage.setItem(userCart._id, userCartJSON) //

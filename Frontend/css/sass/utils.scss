@@ -5,6 +5,21 @@ $primary--color:#f3e9f1;
 $secondary--color: #A26769;
 $text--color: rgb(38, 22, 36);
 
+//FONT 
+
+@font-face {
+    font-family: 'Belligerent';
+    src: url("../css/sass/Font/belligerent.ttf");
+}
+@font-face {
+    font-family: 'vanio';
+    src: url("../css/sass/Font/Vanio-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'vanioBold';
+    src: url("../css/sass/Font/Vanio-Bold.ttf");
+}
 
 // CSS GENERALE
 
@@ -20,10 +35,11 @@ body {
 p{
     color: $text--color;
     font-family: "vanio";
+    font-size: 1.2;
 }
 
 h1, h2, h3 {
-    font-family: "Belligerent";
+    font-family: "vanioBold";
     color: $text--color;
 }
 
@@ -109,16 +125,6 @@ input{
     }
 }
 
-//FONT 
-
-@font-face {
-    font-family: 'Belligerent';
-    src: url("../css/sass/Font/belligerent.ttf");
-}
-@font-face {
-    font-family: 'vanio';
-    src: url("../css/sass/Font/Vanio-Regular.ttf");
-}
 
 // KEYFRAME 
 

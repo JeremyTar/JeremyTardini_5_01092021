@@ -1,5 +1,17 @@
 @charset "UTF-8";
 /* Elements css general */
+@font-face {
+  font-family: "Belligerent";
+  src: url("../css/sass/Font/belligerent.ttf");
+}
+@font-face {
+  font-family: "vanio";
+  src: url("../css/sass/Font/Vanio-Regular.ttf");
+}
+@font-face {
+  font-family: "vanioBold";
+  src: url("../css/sass/Font/Vanio-Bold.ttf");
+}
 * {
   text-decoration: none;
 }
@@ -12,10 +24,11 @@ body {
 p {
   color: #261624;
   font-family: "vanio";
+  font-size: 1.2;
 }
 
 h1, h2, h3 {
-  font-family: "Belligerent";
+  font-family: "vanioBold";
   color: #261624;
 }
 
@@ -98,14 +111,6 @@ input::-o-inner-spin-button {
   margin: 0;
 }
 
-@font-face {
-  font-family: "Belligerent";
-  src: url("../css/sass/Font/belligerent.ttf");
-}
-@font-face {
-  font-family: "vanio";
-  src: url("../css/sass/Font/Vanio-Regular.ttf");
-}
 @keyframes apparitionSign {
   0% {
     opacity: 0;
@@ -205,19 +210,31 @@ input::-o-inner-spin-button {
   padding: 5px;
 }
 #produit button {
-  border: 2px ridge #A26769;
+  font-family: "vanio";
+  border: none;
   border-radius: 5px;
-  background-color: #FFFF;
-  color: #261624;
-  width: 150px;
+  background-color: #261624;
+  color: #FFFF;
+  width: 175px;
   height: 50px;
-  font-weight: 500;
   margin: 10px 0;
+  transition: all 200ms ease;
+}
+#produit button:hover {
+  opacity: 0.8;
 }
 
 #panier {
   background-color: #f3e9f1;
   border: ridge 2px #A26769;
+}
+#panier .menuPanier {
+  width: 100%;
+  margin: 0;
+}
+#panier .menuPanier p {
+  padding: 5px;
+  margin-left: 40px;
 }
 #panier .cart_section {
   width: 100%;
@@ -289,9 +306,6 @@ input::-o-inner-spin-button {
 }
 #panier .cart_item_image img {
   max-width: 100%;
-}
-#panier .cart_item_name {
-  margin-left: 7.53%;
 }
 #panier .cart_item_title {
   font-size: 14px;
