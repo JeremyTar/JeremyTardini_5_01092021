@@ -24,7 +24,13 @@ body {
 p {
   color: #261624;
   font-family: "vanio";
-  font-size: 1.2;
+  font-size: 1.2rem;
+}
+
+a {
+  color: #261624;
+  font-family: "vanio";
+  font-size: 1.1em;
 }
 
 h1, h2, h3 {
@@ -65,6 +71,22 @@ header nav .navigateur i {
   font-size: 1.5em;
 }
 
+@media screen and (max-width: 420px) {
+  header nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 700px) {
+  footer ul {
+    flex-direction: column;
+  }
+  footer ul li {
+    display: flex;
+    justify-content: center;
+  }
+}
 footer {
   background-color: #f3e9f1;
   display: flex;
@@ -158,17 +180,17 @@ input::-o-inner-spin-button {
 }
 
 #confirmeSign {
-  animation: apparitionSign 1s ease forwards;
+  width: 50%;
   opacity: 1;
-  position: fixed;
-  top: 50vh;
-  left: 30vw;
   border: solid 2px #A26769;
   border-radius: 5px;
   z-index: 3;
   background-color: #f3e9f1;
   padding: 5px;
   margin: auto;
+  position: absolute;
+  left: 25%;
+  right: 25%;
 }
 #confirmeSign div {
   display: flex;
@@ -191,12 +213,20 @@ input::-o-inner-spin-button {
   transition: 0.1s;
 }
 
+@media screen and (max-width: 600px) {
+  #confirmeSign {
+    left: 10%;
+    right: 10%;
+    width: 80%;
+  }
+}
 #produit {
   background-color: #f3e9f1;
   margin: 10px 0;
   display: flex;
   border: ridge 2px #A26769;
   justify-content: space-evenly;
+  min-width: 300px;
 }
 #produit img {
   image-rendering: inherit;
@@ -208,6 +238,7 @@ input::-o-inner-spin-button {
 }
 #produit .select {
   padding: 5px;
+  width: 50%;
 }
 #produit button {
   font-family: "vanio";
@@ -219,9 +250,13 @@ input::-o-inner-spin-button {
   height: 50px;
   margin: 10px 0;
   transition: all 200ms ease;
+  font-size: 18px;
 }
 #produit button:hover {
   opacity: 0.8;
+}
+#produit input {
+  width: 50%;
 }
 
 #panier {
@@ -283,11 +318,10 @@ input::-o-inner-spin-button {
 }
 #panier .cart_item {
   width: 100%;
-  padding: 15px;
-  padding-right: 46px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding-bottom: 15px;
 }
 #panier .cart_item input {
   width: 50px;
@@ -298,6 +332,19 @@ input::-o-inner-spin-button {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+#panier .cart_item_name {
+  width: 150px;
+}
+#panier .cart_item_color {
+  width: 150px;
+}
+#panier .cart_item_quantity input {
+  height: 25px;
+  width: 50px;
+}
+#panier .cart_item_price {
+  width: 150px;
 }
 #panier .cart_item_image {
   width: 20%;

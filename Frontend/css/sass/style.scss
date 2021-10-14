@@ -35,17 +35,17 @@
 
 
 #confirmeSign {
-    animation: apparitionSign 1s ease forwards;
+    width: 50%;
     opacity: 1;
-    position: fixed;
-    top : 50vh;
-    left : 30vw;
     border: solid 2px $secondary--color;
     border-radius: 5px;
     z-index: 3;
     background-color: $primary--color;
     padding: 5px;
     margin: auto;
+    position: absolute;
+    left: 25%;
+    right: 25%;
     div{
         display: flex;
         justify-content: space-between;
@@ -68,12 +68,22 @@
         }
     }
 }
+
+@media screen and (max-width: 600px) {
+    #confirmeSign {
+        left: 10%;
+        right: 10%;
+        width: 80%;
+    }
+}
+
 #produit{
     background-color: $primary--color;
     margin: 10px 0;
     display: flex;
     border: ridge 2px $secondary--color;
     justify-content: space-evenly;
+    min-width: 300px;
     img{
         image-rendering: inherit ;
         object-fit: cover;
@@ -84,6 +94,7 @@
     }
     .select{
         padding: 5px;
+        width: 50%;
     }
     button{
         font-family: "vanio";
@@ -95,9 +106,13 @@
         height: 50px;
         margin: 10px 0;
         transition: all 200ms ease;
+        font-size: 18px;
     }
     button:hover {
         opacity: 0.8
+    }
+    input {
+        width: 50%;
     }
 
 }
@@ -163,11 +178,10 @@
     }
     .cart_item {
         width: 100%;
-        padding: 15px;
-        padding-right: 46px;
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        padding-bottom: 15px;
         input{ 
             width: 50px; 
          }
@@ -177,6 +191,21 @@
             display: flex;
             justify-content: space-evenly;
             flex-wrap: wrap;
+        }
+        &_name {
+            width: 150px;
+        }
+        &_color {
+            width: 150px;
+        }
+        &_quantity {
+            input{
+                height: 25px;
+                width: 50px;
+            }
+        }
+        &_price {
+            width: 150px;
         }
         &_image {
             width: 20%;

@@ -17,6 +17,7 @@ async function converstionLocalStorage(produit) {
         }
     }
 }
+
 //FONCTION D'AFFICHAGE DU PANIER DYNAMIQUE
 
 async function afficherCart (realPanier) {
@@ -26,8 +27,7 @@ async function afficherCart (realPanier) {
                                 <div class="row">
                                     <div class="col-lg-10 offset-lg-1">
                                         <p class="text-center"> Il n'y a rien dans votre panier !<p>
-                                        <img src="../../Backend/images/logo.PNG" alt="logo Orinoco">
-                                        <a href="Index.html">Retour a la boutique</a>
+                                        <a class="d-flex justify-content-around" href="Index.html">Retour à la boutique</a>
                                     </div>
                                 </div>
                             </div>
@@ -55,23 +55,23 @@ async function afficherCart (realPanier) {
             htmlLi = `<li class="cart_item clearfix">
                             <div class="cart_item_info d-flex justify-content-around">
                                 <div class="cart_item_name cart_info_col">
-                                    <div class="cart_item_text">${realPanier[i].name}</div>
+                                    <div class="cart_item_text text-center">${realPanier[i].name}</div>
                                 </div>
                                 <div class="cart_item_color cart_info_col">
-                                    <div class="cart_item_text">${realPanier[i].lenses}</div>
+                                    <div class="cart_item_text text-center">${realPanier[i].lenses}</div>
                                 </div>
                                 <div class="cart_item_quantity cart_info_col">
-                                    <input id="${realPanier[i]._id}" class="cart_item_text" type="number" value="${quantity}" max="${realPanier[i].stock}" onchange="inputOnChange(this, '${realPanier[i]._id}')" >
+                                    <input id="${realPanier[i]._id}" class="cart_item_text d-flex justify-content-around" type="number" value="${quantity}" max="${realPanier[i].stock}" onchange="inputOnChange(this, '${realPanier[i]._id}')" >
                                 </div>
                                 <div class="cart_item_price cart_info_col">
-                                    <div class="cart_item_text">${price} €</div>
+                                    <div class="cart_item_text text-center">${price} €</div>
                                 </div>
                                 <div class="cart_item_total cart_info_col">
-                                    <div class="cart_item_text">${getTotalByProduct(quantity,price)} €</div>
+                                    <div class="cart_item_text text-center">${getTotalByProduct(quantity,price)} €</div>
                                 </div>
                             </div>
                             <div class="cart_item_image d-flex justify-content-around">
-                                <img src="${realPanier[i].imageUrl}" alt="">
+                                <button type="button">Supprimer l'article de votre panier</button>
                             </div>
                         </li>`;
             htmlList.push(htmlLi)
@@ -84,19 +84,32 @@ async function afficherCart (realPanier) {
                                 <div class="row">
                                     <div class="col-lg-10 offset-lg-1">
                                         <div class="cart_container">
-                                            <div class="cart_title mb-2"><h2>Shopping Cart</h2></div>
+                                            <div class="cart_title mb-4"><h2>Shopping Cart</h2></div>
                                             <div class="cart_items">
-                                                <div class="d-flex justify-content-end menuPanier">
-                                                    <p>Name</p>
-                                                    <p>Lentille</p>
-                                                    <p>Quantité</p>
-                                                    <p>Prix unitaire</p>
-                                                    <p>Prix total</p>
-                                                </div>
                                                 <ul id="cart_list">
+                                                    <li class="cart_item clearfix">
+                                                        <div class="cart_item_info d-flex justify-content-around">
+                                                            <div class="cart_item_name cart_info_col">
+                                                                <div class="cart_item_text text-center">Nom du produit</div>
+                                                            </div>
+                                                            <div class="cart_item_color cart_info_col">
+                                                                <div class="cart_item_text text-center">Lentille</div>
+                                                            </div>
+                                                            <div class="cart_item_quantity cart_info_col">
+                                                                <div class="cart_item_text text-center">Quantité</div>
+                                                            </div>
+                                                            <div class="cart_item_price cart_info_col">
+                                                                <div class="cart_item_text text-center">Prix</div>
+                                                            </div>
+                                                            <div class="cart_item_total cart_info_col">
+                                                                <div class="cart_item_text text-center">Montant total</div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="order_total">
+                                            <button type="button" onclick="removeAllProduct()">Vider votre panier</button>
                                                 <div class="order_total_content text-md-right">
                                                     <div class="order_total_title">Order Total:</div>
                                                     <div class="order_total_amount">${totalAmount} €</div>
@@ -139,28 +152,16 @@ async function afficherForm() {
                             </div>
                             <div class="form-group">
                                 <label for="location">Adresse</label>
+                                <input id="adresse" type="text" class="form-control" placeholder="Votre adresse" required>
                                 <div class="d-flex">
-                                    <input id="numeroRue" type="number" class="form-control" placeholder="n°" required>
-                                    <select id="selectForm" name="streetType">
-                                    </select>
-                                </div>
-                                <input id="adresse" type="text" class="form-control" placeholder="Adresse" required>
-                                <div class="d-flex">
-                                    <input id="codePostal" type="text" class="form-control" placeholder="Code postal" required>
                                     <input id="ville" type="text" class="form-control" placeholder="Ville" required>
-                            </div>
+                                </div>
                             </div>
                         </div>
                     </div>`;
         document.getElementById("form").insertAdjacentHTML('afterbegin', htmlForm);
         let purchaseButton = document.getElementById("purchase")
         purchaseButton.setAttribute("onclick", "purchaseCart()")
-        let optionOdonymie = ''
-        for(let i = 0; i < listOdonymie.length; i++) {
-            optionOdonymie = optionOdonymie + `<option value="${listOdonymie[i]}">${listOdonymie[i]}</option>`;
-            
-        }
-    document.getElementById("selectForm").innerHTML = optionOdonymie;
  }
 
 
@@ -187,42 +188,23 @@ function inputOnChange(v, idProduct) {
     }
 }
 
+function removeAllProduct() {
+    localStorage.clear()
+    location.reload()
+}
 
+
+// FUNCTION POUR AJOUTER AU PANIER
 
 async function purchaseCart() {
 
-    // FONCTION DE VERIFICATION CARACTERE FORMULAIRE
-
-    async function formcheck() {
-        const formvalueP = contact.firstName;
-        const formvalueL = contact.lastName;
-        const formvalueA = contact.address;
-        const formvalueC = contact.city;
-        const formvalueE = contact.email;
-        if (
-            /^[A-Za-z]{2,24}$/.test(formvalueP) 
-            && /^[A-Za-z]{2,24}$/.test(formvalueL) 
-            && /^[A-Za-z]{2,24}$/.test(formvalueC)
-            && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formvalueE)
-            && /^(([a-zA-ZÀ-ÿ0-9]+[\s\-]{1}[a-zA-ZÀ-ÿ0-9]+)){1,10}$/.test(formvalueA)) {
-            return true;
-        } 
-        return false
-    }
-    //verification du formulaire
-    const formCheck = formcheck()
-
-
-    
-    // recupération des informations sur le formulaires + produits
-    let adresseForm = document.getElementById("numeroRue").value + " " + document.getElementById("selectForm").value + " " + document.getElementById("adresse").value;
-    let cityForm = document.getElementById("codePostal").value + " " + document.getElementById("ville").value;
     let totalId = [];
-    for(let i = 0; i < realPanier.length; i++) {
-    for(let y = 0; y < realPanier[i].quantity; y++) {
-        totalId.push(realPanier[i]._id);
-    }
 
+
+    for(let i = 0; i < realPanier.length; i++) {
+        for(let y = 0; y < realPanier[i].quantity; y++) {
+            totalId.push(realPanier[i]._id);
+        }
     }
 
     // construction de l'objet pour envoie a l'API
@@ -231,31 +213,49 @@ async function purchaseCart() {
         contact: {
             firstName: document.getElementById("prenom").value,
             lastName: document.getElementById("name").value,
-            address: adresseForm,
-            city: cityForm,
+            address: document.getElementById("adresse").value,
+            city: document.getElementById("ville").value,
             email: document.getElementById("email").value,
         },
         products: totalId,
     }
+    
+    const formCheck = await formcheck();
 
-    // Supression du panier Actuel
 
     // Envoie a l'API
 
-    fetch("http://localhost:3000/api/cameras/order", {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(productsBody)
-    })
-    .then(response => response.json())
-    .then(data => {   // ajout l'ordir id dans le storage
-        let OrderId = data.orderId;
-        localStorage.setItem('orderId', JSON.stringify(OrderId));
-
-        window.location.replace("./Confirmation.html");
-    }) 
+    if(formCheck == true) {
+        fetch("http://localhost:3000/api/cameras/order", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productsBody)
+        })
+        .then(response => response.json())
+        .then(data => {   // ajout l'ordir id dans le storage
+            let OrderId = data.orderId;
+            localStorage.setItem('orderId', JSON.stringify(OrderId));
+            window.location.replace("./Confirmation.html");
+        })
+    }
+    else {
+        window.alert("Il y a des erreurs dans votre formulaire");
+    }
 } 
 
+
+async function formcheck() {
+    if (
+        /^[A-Za-zÀ-ÿ]{2,24}$/.test(document.getElementById("prenom").value) 
+         && /^[A-Za-zÀ-ÿ]{2,24}$/.test(document.getElementById("name").value) 
+         && /^^[A-Za-zÀ-ÿ]{2,24}$/.test(document.getElementById("ville").value)
+         && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById("email").value)
+         && /^(([a-zA-ZÀ-ÿ0-9]+[\s\-]{1}[a-zA-ZÀ-ÿ0-9]+)){1,10}$/.test(document.getElementById("adresse").value)
+        ) {
+        return true;
+    } 
+    return false
+}

@@ -27,10 +27,12 @@ let newUrlId = apiUrl + '/' + apiUrlId;
                                 <select id="lense" name="lenses"></select>
                             </div>
                             <div class="inputButton w-50">
-                                <p>Quantité : <input id="${produit._id}" type="number" value="1" min="1" max="${produit.stock}"></p>
+                                <p>Quantité : <input id="${produit._id}" type="number" value="1" min="1" onchange="verifyInput()"></p>
                             </div>
                         </div>
-                        <button button class="cart_button_checkout" onclick="addToCart()">Ajouter au panier</button>
+                        <div class="d-flex justify-content-around">
+                            <button button class="cart_button_checkout" onclick="addToCart()">Ajouter au panier</button>
+                        </div>    
                     </div>`;
                     
         document.getElementById("produit").innerHTML = html; // ajout au DOM
@@ -65,10 +67,11 @@ async function addToCart() {
     async function appearSign(elem) {
         if(elem === true) {            
             let htmlConfirme = `<div id="confirmeSign">
-            <a href="../Html/Index.html" class="col-2"><img  src="../../Backend/images/logo.PNG" alt="logo Orinoco"></a>
-            <p>Vous venez d'ajouter à votre panier : </br><strong> ${userCart.quantity} ${userCart.name} modèle : ${userCart.lenses}</strong></p>
+            <a class="d-flex justify-content-around" href="../Html/Index.html" class="col-2"><img src="../../Backend/images/logo.PNG" alt="logo Orinoco"></a>
+            <p class="text-center mt-3">Vous venez d'ajouter à votre panier : </p>
+            <p class="text-center">${userCart.quantity} ${userCart.name} modèle : ${userCart.lenses}</p>
             <div class="d-flex justify-content-between">
-                <button id="productReturn" onclick="removeSign()">Retour au produit</button>
+                <button id="productReturn" class="d-flex justify-content-around" onclick="removeSign()">Retour au produit</button>
                 <a href="Panier.html">Votre panier</a>
             </div>
         </div>`;
@@ -97,4 +100,12 @@ async function removeSign () {
     let elemBlur = document.getElementById("blur");
     elemBlur.parentNode.removeChild(elemBlur);
 
+}
+
+
+async function verifyInput() {
+    if(document.querySelector("input").value < 1 ) {
+        window.alert("Quantité minimum à 1 exemplaire")
+        document.querySelector("input").value = 1;
+    }
 }

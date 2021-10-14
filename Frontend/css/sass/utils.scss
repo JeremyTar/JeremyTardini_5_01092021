@@ -35,7 +35,13 @@ body {
 p{
     color: $text--color;
     font-family: "vanio";
-    font-size: 1.2;
+    font-size: 1.2rem;
+}
+
+a{
+    color: $text--color;
+    font-family: "vanio";
+    font-size: 1.1em;
 }
 
 h1, h2, h3 {
@@ -75,6 +81,29 @@ header{
         }
     }
 }
+
+@media screen and (max-width: 420px) {
+    header {
+            nav{
+            display:flex ;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    footer {
+        ul {
+            flex-direction: column;
+            li {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}
+
 
 footer{
     background-color: $primary--color;
