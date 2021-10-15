@@ -190,38 +190,10 @@ function inputOnChange(v, idProduct) {
     }
 }
 
-async function deleteCart() {
-    let btnDelete = document.querySelectorAll(".delete_button");
-    console.log(btnDelete)
-    for (let i = 0; i < btnDelete.length; i++) {
-        btnDelete[i].addEventListener("click", getIdDelete(i))
-
-            // e.preventDefault()
-            // userCart.splice(i, 1)
-            // localStorage.setItem("product", JSON.stringify(userCart))
-            // window.location.reload()
-    }
-    async function getIdDelete(i) {
-        console.log(i)
-        let id = realPanier[i]._id
-        localStorage.removeItem(id)
-    }
-
-}
-    // let btnDeleteAll = document.querySelector(".delete-all")
-    // btnDeleteAll.addEventListener("click", (err) =>{
-    //     localStorage.clear()
-    //     window.location.reload()
-
-
 async function removeAllProduct() {
     localStorage.clear();
     location.reload();
 }
-
-// async function removeOneProduct(id) {
-//     console.log(id);
-// }
 
 // FUNCTION POUR AJOUTER AU PANIER
 

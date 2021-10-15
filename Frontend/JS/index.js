@@ -33,5 +33,3 @@ async function afficherCardProduct(produit) {
         }
 
 }
-
-// FUNCTION D'AFFICHAGE EN CAS D'ERREUR
