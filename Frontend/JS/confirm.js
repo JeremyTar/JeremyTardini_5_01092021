@@ -1,7 +1,7 @@
 async function afficherOrderId () {
     if(localStorage.getItem("orderId")) {
         let OrderId = localStorage.getItem("orderId");
-        let htmlOrderID =`<div class="card mt-4 mb-4" style="width: 30rem; height: 300px;">
+        let htmlOrderID =`<div class="card mt-4 mb-4" style="width: 32rem;">
                             <div class="p-4" id="orderId">
                                 <h2 class="card-title text-center">Merci pour votre commande !</h2>
                                 <p class="card-text text-center">Vous allez bientot recevoir un mail de confirmation</p>

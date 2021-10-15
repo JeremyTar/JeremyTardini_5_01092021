@@ -2,18 +2,13 @@ let apiUrl = "http://localhost:3000/api/cameras";
 
 // DEFINITION DE LA FONCTION D'APPEL ET DE RENVOIE API
 
-async function apiCall(url, options) {
-  const headers = { 
-        'Accept': 'application/json', 
-        'Content-Type': 'application/json' 
-  }
-
-  const promiseData = window.fetch(url, {...headers, ...options})
+async function apiCall(url) {
+  const promiseData = window.fetch(url)
                         .then((response)  => {
                           if(response.ok) return response.json();
                         })
                         .then((data) => data)
-                        .catch(e => console.error(e.message));
+                        .catch(err => failIndex(err));
   return promiseData;             
 }
 
@@ -27,3 +22,12 @@ async function removeSign () {
 
 }
 
+// FUNCTION HTML EN CAS D'ERREUR AVEC L'API
+
+async function failIndex(err) {
+  let htmlError = `<li class="p-5">
+                      <p>Une erreur c'est produite, veuillez réessayer plus tard, merci</p>
+                  </li>`;
+  document.getElementById("cards").innerHTML = htmlError;
+  console.log("Error: " + err);
+}

@@ -19,6 +19,8 @@
 body {
   padding: 0;
   background-color: #FCF6B1;
+  max-width: 2500px;
+  height: 100%;
 }
 
 p {
@@ -31,6 +33,11 @@ a {
   color: #261624;
   font-family: "vanio";
   font-size: 1.1em;
+}
+
+.vaniobold {
+  font-family: "vanioBold";
+  color: #261624;
 }
 
 h1, h2, h3 {
@@ -97,6 +104,8 @@ footer {
   border-radius: 5px;
   padding-bottom: 10px;
   margin-top: 10px;
+  position: fixed;
+  bottom: 0;
 }
 footer ul {
   padding: 5px;
@@ -315,6 +324,10 @@ input::-o-inner-spin-button {
   border: solid 1px #e8e8e8;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+  padding: 0 25px;
+}
+#panier .legende {
+  width: 80%;
 }
 #panier .cart_item {
   width: 100%;
@@ -327,7 +340,6 @@ input::-o-inner-spin-button {
   width: 50px;
 }
 #panier .cart_item_info {
-  width: 80%;
   padding-top: 18px;
   display: flex;
   justify-content: space-evenly;
@@ -350,6 +362,7 @@ input::-o-inner-spin-button {
   width: 20%;
   margin: 0;
   min-width: 100px;
+  padding: 5px;
 }
 #panier .cart_item_image img {
   max-width: 100%;
@@ -386,16 +399,20 @@ input::-o-inner-spin-button {
 }
 #panier .order_total {
   width: 100%;
-  height: 60px;
   margin-top: 30px;
   border: solid 1px #e8e8e8;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
   padding-right: 46px;
   padding-left: 15px;
   background-color: #fff;
+  font-family: "vanio";
+}
+#panier .order_total button {
+  background-color: #FFFF;
+  border: none;
+  cursor: pointer;
 }
 #panier .order_total_title {
-  display: inline-block;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.5);
   line-height: 60px;
