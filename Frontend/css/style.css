@@ -29,6 +29,11 @@ p {
   font-size: 1.2rem;
 }
 
+label {
+  font-family: "vanio";
+  font-size: 1.2rem;
+}
+
 a {
   color: #261624;
   font-family: "vanio";
@@ -266,6 +271,7 @@ input::-o-inner-spin-button {
 }
 #produit input {
   width: 50%;
+  height: 25px;
 }
 
 #panier {
